@@ -1,7 +1,7 @@
 <template>
   <main>
     <template v-if="loaded && !error">
-      <HeaderComponent>{{ getHeaderText }}</HeaderComponent>
+      <HeaderComponent :text="getHeaderText"></HeaderComponent>
       <ContentComponent />
       <FooterComponent>{{ getFooterText }}</FooterComponent>
       <ErrorComponent v-if="error"></ErrorComponent>
