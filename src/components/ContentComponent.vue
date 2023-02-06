@@ -1,15 +1,13 @@
 <template>
-  <main class="w-full flex items-start">
-    <transition name="fade" mode="out-in">
-      <div
-        v-if="getContent && getContent.html"
-        name="contentWrapper"
-        :key="getContent"
-        v-html="getContent.html"
-      ></div>
-    </transition>
-    <ErrorComponent v-if="error"></ErrorComponent>
-  </main>
+  <transition name="fade" mode="out-in">
+    <div
+      v-if="getContent && getContent.html"
+      name="contentWrapper"
+      :key="getContent"
+      v-html="getContent.html"
+    ></div>
+  </transition>
+  <ErrorComponent v-if="error"></ErrorComponent>
 </template>
 
 <script>

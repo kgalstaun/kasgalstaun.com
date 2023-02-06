@@ -1,16 +1,11 @@
 <template>
-  <main class="max-w-screen-md mx-auto px-md">
-    <div
-      v-if="loaded && !error"
-      class="py-xl min-h-screen flex flex-col items-left"
-    >
-      <HeaderComponent class="mb-xl">{{ getHeaderText }}</HeaderComponent>
+  <main>
+    <template v-if="loaded && !error">
+      <HeaderComponent>{{ getHeaderText }}</HeaderComponent>
       <ContentComponent />
-      <FooterComponent class="mt-auto pt-xl">{{
-        getFooterText
-      }}</FooterComponent>
-    </div>
-    <ErrorComponent v-if="error"></ErrorComponent>
+      <FooterComponent>{{ getFooterText }}</FooterComponent>
+      <ErrorComponent v-if="error"></ErrorComponent>
+    </template>
   </main>
 </template>
 
