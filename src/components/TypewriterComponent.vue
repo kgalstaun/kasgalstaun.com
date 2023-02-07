@@ -1,9 +1,10 @@
 <template>
-  <div>{{ animatedText }}</div>
+  {{ animatedText }}
 </template>
 
 <script>
 import { ref, onMounted } from "vue";
+import TimeOutHelper from "@/helpers/TimeOutHelper.js";
 
 export default {
   props: {
@@ -21,17 +22,9 @@ export default {
       let textArray = text.replace(/ /g, " ").toLowerCase().split("");
 
       for (const character of textArray) {
-        await createCustomTimeout(0.07);
+        await TimeOutHelper.createCustomTimeout(70);
         animatedText.value = animatedText.value + character;
       }
-    }
-
-    function createCustomTimeout(seconds) {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          resolve();
-        }, seconds * 1000);
-      });
     }
     return {
       animatedText,
