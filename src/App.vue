@@ -1,7 +1,7 @@
 <template>
   <main>
     <template v-if="loaded && !error">
-      <HeaderComponent :text="getHeaderText"></HeaderComponent>
+      <LandingPageComponent />
       <ContentComponent />
       <FooterComponent>{{ getFooterText }}</FooterComponent>
       <ErrorComponent v-if="error"></ErrorComponent>
@@ -18,15 +18,15 @@ import {
   getHeaderText,
   getFooterText,
 } from "@/state/metaDataState";
-import HeaderComponent from "@/components/HeaderComponent.vue";
+import LandingPageComponent from "@/components/LandingPageComponent.vue";
 import ContentComponent from "@/components/ContentComponent.vue";
 import FooterComponent from "@/components/FooterComponent.vue";
 import ErrorComponent from "@/components/ErrorComponent";
-import ConstantService from "@/service/ConstantService";
+import DictionaryService from "@/service/DictionaryService";
 
 export default {
   components: {
-    HeaderComponent,
+    LandingPageComponent,
     ContentComponent,
     FooterComponent,
     ErrorComponent,
@@ -38,7 +38,7 @@ export default {
 
     let loaded = ref(false);
     let error = ref(false);
-    const getConstant = ConstantService.get;
+    const getConstant = DictionaryService.get;
 
     async function fetchMetaData() {
       QueryService.fetch(MetaQuery)

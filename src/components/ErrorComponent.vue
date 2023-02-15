@@ -1,21 +1,21 @@
 <template>
   <MessageComponent class="pt-xl text-5xl" :type="'error'">{{
-    getConstant("messages", "error")
+    getText("messages", "error")
   }}</MessageComponent>
 </template>
 
 <script>
 import MessageComponent from "@/components/MessageComponent";
-import ConstantService from "@/service/ConstantService";
+import DictionaryService from "@/service/DictionaryService";
 
 export default {
   components: {
     MessageComponent,
   },
   setup() {
-    const getConstant = ConstantService.get;
+    const getText = DictionaryService.get;
     return {
-      getConstant,
+      getText,
     };
   },
 };

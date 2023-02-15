@@ -1,30 +1,26 @@
 <template>
-  <header class="flex flex-row items-center justify-center">
-    <router-link to="/">
-      <h1 class="cursor-pointer text-9xl p-md lowercase">
-        <TypewriterComponent :text="text"></TypewriterComponent>
-      </h1>
-    </router-link>
+  <header>
+    <h1 class="text-9xl p-md lowercase">
+      <TypewriterComponent :text="getHeaderText"></TypewriterComponent>
+    </h1>
   </header>
 </template>
 
 <script>
+import { getHeaderText } from "@/state/metaDataState";
+
 import TypewriterComponent from "@/components/TypewriterComponent.vue";
 
 export default {
-  props: {
-    text: String,
-  },
   components: { TypewriterComponent },
+  setup() {
+    return { getHeaderText };
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 h1 {
-  line-height: 3.2rem;
-  color: white;
-}
-header {
-  height: 100vh;
+  text-align: center;
 }
 </style>

@@ -1,5 +1,5 @@
-import global from "@/constants/global";
-import messages from "@/constants/messages";
+import global from "@/dictionary/global";
+import messages from "@/dictionary/messages";
 import ObjectHelper from "@/helpers/ObjectHelper";
 
 const modules = {
@@ -7,7 +7,7 @@ const modules = {
   messages,
 };
 
-const ConstantService = {
+const DictionaryService = {
   get(module, property) {
     let value;
 
@@ -21,4 +21,4 @@ const ConstantService = {
   },
 };
 
-export default ConstantService;
+export default DictionaryService;
