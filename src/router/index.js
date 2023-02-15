@@ -1,16 +1,16 @@
 import { createRouter, createWebHistory } from "vue-router";
-import ContentComponent from "@/components/ContentComponent.vue";
+import MainComponent from "@/components/MainComponent.vue";
 
 const routes = [
   {
     path: "/",
     name: "werk",
-    component: ContentComponent,
+    component: MainComponent,
   },
   {
     path: "/werk/:id",
     name: "werkItem",
-    component: ContentComponent,
+    component: MainComponent,
   },
   {
     path: "/:pathMatch(.*)*",

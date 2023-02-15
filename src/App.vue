@@ -1,12 +1,10 @@
 <template>
-  <main>
-    <template v-if="loaded && !error">
-      <LandingPageComponent />
-      <ContentComponent />
-      <FooterComponent>{{ getFooterText }}</FooterComponent>
-      <ErrorComponent v-if="error"></ErrorComponent>
-    </template>
-  </main>
+  <template v-if="loaded && !error">
+    <HeaderComponent />
+    <MainComponent />
+    <FooterComponent>{{ getFooterText }}</FooterComponent>
+    <ErrorComponent v-if="error"></ErrorComponent>
+  </template>
 </template>
 
 <script>
@@ -18,16 +16,16 @@ import {
   getHeaderText,
   getFooterText,
 } from "@/state/metaDataState";
-import LandingPageComponent from "@/components/LandingPageComponent.vue";
-import ContentComponent from "@/components/ContentComponent.vue";
+import HeaderComponent from "@/components/HeaderComponent.vue";
+import MainComponent from "@/components/MainComponent.vue";
 import FooterComponent from "@/components/FooterComponent.vue";
 import ErrorComponent from "@/components/ErrorComponent";
 import DictionaryService from "@/service/DictionaryService";
 
 export default {
   components: {
-    LandingPageComponent,
-    ContentComponent,
+    HeaderComponent,
+    MainComponent,
     FooterComponent,
     ErrorComponent,
   },
