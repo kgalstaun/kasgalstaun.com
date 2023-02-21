@@ -2,19 +2,13 @@
   <div :class="['arrow', arrowStyling]">{{ arrow }}</div>
 </template>
 
-<script>
-export default {
-  props: {
-    arrowStyling: String,
-  },
-  setup() {
-    const arrow = ">";
-
-    return {
-      arrow,
-    };
-  },
-};
+<script setup>
+import { defineProps } from "vue";
+// eslint-disable-next-line no-unused-vars
+const props = defineProps({
+  arrowStyling: String,
+});
+const arrow = ">";
 </script>
 
 <style lang="scss" scoped>

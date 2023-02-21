@@ -2,33 +2,27 @@
   {{ animatedText }}
 </template>
 
-<script>
-import { ref, onMounted } from "vue";
+<script setup>
+import { ref, onMounted, defineProps } from "vue";
 import TimeOutHelper from "@/helpers/TimeOutHelper.js";
 
-export default {
-  props: {
-    text: String,
-  },
-  setup(props) {
-    onMounted(() => {
-      startTypewriteAnimation();
-    });
+const props = defineProps({
+  text: String,
+});
 
-    let animatedText = ref("");
+onMounted(() => {
+  startTypewriteAnimation();
+});
 
-    async function startTypewriteAnimation() {
-      let text = props.text;
-      let textArray = text.replace(/ /g, " ").toLowerCase().split("");
+let animatedText = ref("");
 
-      for (const character of textArray) {
-        await TimeOutHelper.createCustomTimeout(70);
-        animatedText.value = animatedText.value + character;
-      }
-    }
-    return {
-      animatedText,
-    };
-  },
-};
+async function startTypewriteAnimation() {
+  let text = props.text;
+  let textArray = text.replace(/ /g, " ").toLowerCase().split("");
+
+  for (const character of textArray) {
+    await TimeOutHelper.createCustomTimeout(70);
+    animatedText.value = animatedText.value + character;
+  }
+}
 </script>

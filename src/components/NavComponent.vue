@@ -8,13 +8,6 @@
   </nav>
 </template>
 
-<script>
-export default {
-  setup() {
-    const titles = ["werk"];
-    return {
-      titles,
-    };
-  },
-};
+<script setup>
+const titles = ["werk"];
 </script>

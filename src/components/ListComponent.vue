@@ -11,12 +11,12 @@
   </ul>
 </template>
 
-<script>
-export default {
-  props: {
-    list: Array,
-  },
-};
+<script setup>
+import { defineProps } from "vue";
+// eslint-disable-next-line no-unused-vars
+const props = defineProps({
+  list: Array,
+});
 </script>
 
 <style lang="scss" scoped>
