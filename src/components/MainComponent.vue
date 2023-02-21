@@ -1,11 +1,13 @@
 <template>
   <transition name="fade" mode="out-in">
-    <div
-      v-if="getContent && getContent.html"
-      name="contentWrapper"
-      :key="getContent"
-      v-html="getContent.html"
-    ></div>
+    <main ref="main">
+      <div
+        v-if="getContent && getContent.html"
+        name="contentWrapper"
+        :key="getContent"
+        v-html="getContent.html"
+      ></div>
+    </main>
   </transition>
   <ErrorComponent v-if="error"></ErrorComponent>
 </template>
@@ -71,3 +73,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+main {
+  height: 100vh;
+}
+</style>

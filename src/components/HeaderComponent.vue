@@ -8,8 +8,7 @@
     <div class="mb-lg">
       <ArrowComponent
         @click="arrowClick"
-        :style="{ visibility: arrowVisibility }"
-        :class="{ 'cursor-pointer': arrowIsClickable }"
+        :style="{ opacity: arrowOpacity, visibility: arrowVisibility }"
         :arrowStyling="arrowStyling"
       />
     </div>
@@ -17,7 +16,7 @@
 </template>
 
 <script>
-import { ref, computed, onMounted } from "vue";
+import { ref, onMounted } from "vue";
 import ArrowComponent from "@/components/ArrowComponent.vue";
 import TypewriterComponent from "@/components/TypewriterComponent.vue";
 import { getHeaderText } from "@/state/metaDataState";
@@ -27,36 +26,42 @@ export default {
   components: { TypewriterComponent, ArrowComponent },
   setup() {
     onMounted(() => {
-      startBlinkingAnimation();
+      startBlinkingAnimation(arrowBlinkSpeed);
     });
+
+    const arrowBlinkSpeed = 550;
+    const arrowOpacityWeak = "20%";
+    const arrowOpacityFull = "100%";
 
     let arrowStyling = ref(
       `${arrowConfig.DIRECTION.DOWN} ${arrowConfig.SIZE.LG}`
     );
-    let arrowVisibility = ref("hidden");
-    const arrowIsClickable = computed(() => {
-      return arrowVisibility.value === "visible";
-    });
+    let arrowOpacity = ref(arrowOpacityWeak);
+    let arrowVisibility = ref("visibile");
     let arrowShowAndHideInterval;
+    const main = ref(null);
 
     function arrowClick() {
       clearInterval(arrowShowAndHideInterval);
+      arrowVisibility.value = "hidden";
+      main.value?.scrollIntoView({ behavior: "smooth" });
     }
 
-    function startBlinkingAnimation() {
+    function startBlinkingAnimation(blinkSpeed) {
       arrowShowAndHideInterval = setInterval(() => {
-        arrowVisibility.value == "hidden"
-          ? (arrowVisibility.value = "visible")
-          : (arrowVisibility.value = "hidden");
-      }, 700);
+        arrowOpacity.value == arrowOpacityWeak
+          ? (arrowOpacity.value = arrowOpacityFull)
+          : (arrowOpacity.value = arrowOpacityWeak);
+      }, blinkSpeed);
     }
 
     return {
       arrowStyling,
-      arrowVisibility,
+      arrowOpacity,
       arrowClick,
-      arrowIsClickable,
+      arrowVisibility,
       getHeaderText,
+      main,
     };
   },
 };
