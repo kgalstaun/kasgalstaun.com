@@ -1,6 +1,6 @@
 <template>
   <transition name="fade" mode="out-in">
-    <main ref="main">
+    <main>
       <div
         v-if="getContent && getContent.html"
         name="contentWrapper"
@@ -15,7 +15,7 @@
 <script setup>
 import { ref, watch, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { setContent } from "@/state/contentState";
+import { setContent, getContent } from "@/state/contentState";
 import QueryService from "@/service/QueryService";
 import DataQuery from "@/queries/data";
 import ErrorComponent from "@/components/ErrorComponent";

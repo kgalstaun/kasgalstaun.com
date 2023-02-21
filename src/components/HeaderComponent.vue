@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, defineEmits } from "vue";
 import ArrowComponent from "@/components/ArrowComponent.vue";
 import TypewriterComponent from "@/components/TypewriterComponent.vue";
 import { getHeaderText } from "@/state/metaDataState";
@@ -26,6 +26,8 @@ onMounted(() => {
   startBlinkingAnimation(arrowBlinkSpeed);
 });
 
+const emit = defineEmits(["arrowClick"]);
+
 const arrowBlinkSpeed = 550;
 const arrowOpacityWeak = "20%";
 const arrowOpacityFull = "100%";
@@ -34,12 +36,11 @@ let arrowStyling = ref(`${arrowConfig.DIRECTION.DOWN} ${arrowConfig.SIZE.LG}`);
 let arrowOpacity = ref(arrowOpacityWeak);
 let arrowVisibility = ref("visibile");
 let arrowShowAndHideInterval;
-const main = ref(null);
 
 function arrowClick() {
   clearInterval(arrowShowAndHideInterval);
   arrowVisibility.value = "hidden";
-  main.value?.scrollIntoView({ behavior: "smooth" });
+  emit("arrowClick");
 }
 
 function startBlinkingAnimation(blinkSpeed) {

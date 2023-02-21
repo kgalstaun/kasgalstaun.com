@@ -1,7 +1,9 @@
 <template>
   <template v-if="loaded && !error">
-    <HeaderComponent />
-    <MainComponent />
+    <HeaderComponent @arrow-click="arrowClicked()" />
+    <div ref="main">
+      <MainComponent />
+    </div>
     <FooterComponent>{{ getFooterText }}</FooterComponent>
     <ErrorComponent v-if="error"></ErrorComponent>
   </template>
@@ -21,6 +23,7 @@ onMounted(() => {
   fetchMetaData();
 });
 
+const main = ref(null);
 let loaded = ref(false);
 let error = ref(false);
 
@@ -32,5 +35,9 @@ async function fetchMetaData() {
       loaded.value = true;
     })
     .catch(() => (error.value = true));
+}
+
+function arrowClicked() {
+  main.value.scrollIntoView({ behavior: "smooth" });
 }
 </script>
