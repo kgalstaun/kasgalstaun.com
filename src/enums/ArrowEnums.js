@@ -1,4 +1,4 @@
-const arrowConfig = {
+const ArrowEnums = {
   DIRECTION: {
     LEFT: "arrow-left",
     RIGHT: "arrow-right",
@@ -12,4 +12,4 @@ const arrowConfig = {
   },
 };
 
-export default arrowConfig;
+export default ArrowEnums;

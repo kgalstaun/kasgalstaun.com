@@ -6,8 +6,12 @@ function setContent(content) {
   data.value = content;
 }
 
+function resetContent() {
+  data.value = null;
+}
+
 const getContent = computed(() =>
   data.value && data.value.content ? data.value.content : null
 );
 
-export { setContent, getContent };
+export { setContent, resetContent, getContent };

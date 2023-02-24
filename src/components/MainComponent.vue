@@ -1,6 +1,6 @@
 <template>
   <transition name="fade" mode="out-in">
-    <main>
+    <main ref="main">
       <div
         v-if="getContent && getContent.html"
         name="contentWrapper"
@@ -15,18 +15,29 @@
 <script setup>
 import { ref, watch, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { setContent, getContent } from "@/state/contentState";
+import { setContent, resetContent, getContent } from "@/state/contentState";
 import QueryService from "@/service/QueryService";
 import DataQuery from "@/queries/data";
+import ScrollIntoViewEvent from "@/events/ScrollIntoViewEvent";
+import ScrollIntoViewHelper from "@/helpers/ScrollIntoViewHelper";
+import ElementEnums from "@/enums/ElementEnums";
 import ErrorComponent from "@/components/ErrorComponent";
 
 const route = useRoute();
 const router = useRouter();
 let error = ref(false);
+const main = ref(null);
 
 watch(route, () => {
-  setContent(null);
+  resetContent();
   fetchData();
+});
+
+watch(ScrollIntoViewEvent.listen, () => {
+  const element = ScrollIntoViewEvent.listen.value;
+  if (element && element === ElementEnums.MAIN) {
+    ScrollIntoViewHelper.scroll(main);
+  }
 });
 
 onMounted(() => {

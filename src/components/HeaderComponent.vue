@@ -16,23 +16,23 @@
 </template>
 
 <script setup>
-import { ref, onMounted, defineEmits } from "vue";
+import { ref, onMounted } from "vue";
 import ArrowComponent from "@/components/ArrowComponent.vue";
 import TypewriterComponent from "@/components/TypewriterComponent.vue";
 import { getHeaderText } from "@/state/metaDataState";
-import arrowConfig from "@/enums/arrowConfig.js";
+import ScrollIntoViewEvent from "@/events/ScrollIntoViewEvent";
+import ArrowEnums from "@/enums/ArrowEnums";
+import ElementEnums from "@/enums/ElementEnums";
 
 onMounted(() => {
   startBlinkingAnimation(arrowBlinkSpeed);
 });
 
-const emit = defineEmits(["arrowClick"]);
-
 const arrowBlinkSpeed = 550;
 const arrowOpacityWeak = "20%";
 const arrowOpacityFull = "100%";
 
-let arrowStyling = ref(`${arrowConfig.DIRECTION.DOWN} ${arrowConfig.SIZE.LG}`);
+let arrowStyling = ref(`${ArrowEnums.DIRECTION.DOWN} ${ArrowEnums.SIZE.LG}`);
 let arrowOpacity = ref(arrowOpacityWeak);
 let arrowVisibility = ref("visibile");
 let arrowShowAndHideInterval;
@@ -40,7 +40,7 @@ let arrowShowAndHideInterval;
 function arrowClick() {
   clearInterval(arrowShowAndHideInterval);
   arrowVisibility.value = "hidden";
-  emit("arrowClick");
+  ScrollIntoViewEvent.emit(ElementEnums.MAIN);
 }
 
 function startBlinkingAnimation(blinkSpeed) {
