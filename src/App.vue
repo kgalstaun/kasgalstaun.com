@@ -2,16 +2,16 @@
   <template v-if="loaded && !error">
     <HeaderComponent />
     <MainComponent />
-    <FooterComponent>{{ getFooterText }}</FooterComponent>
+    <FooterComponent>{{ Meta.getFooterText }}</FooterComponent>
     <ErrorComponent v-if="error"></ErrorComponent>
   </template>
 </template>
 
 <script setup>
 import { ref, onMounted } from "vue";
-import { setMetaData, getFooterText } from "@/state/metaDataState";
+import Meta from "@/state/Meta";
 import QueryService from "@/service/QueryService";
-import MetaQuery from "@/queries/meta";
+import MetaQuery from "@/queries/MetaQuery";
 import HeaderComponent from "@/components/HeaderComponent.vue";
 import MainComponent from "@/components/MainComponent.vue";
 import FooterComponent from "@/components/FooterComponent.vue";
@@ -28,7 +28,7 @@ async function fetchMetaData() {
   QueryService.fetch(MetaQuery)
     .then((data) => {
       let metaData = data.metas[0];
-      setMetaData(metaData.headerText, metaData.footerText);
+      Meta.set(metaData.headerText, metaData.footerText);
       loaded.value = true;
     })
     .catch(() => (error.value = true));

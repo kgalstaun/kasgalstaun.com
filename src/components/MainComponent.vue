@@ -2,10 +2,10 @@
   <transition name="fade" mode="out-in">
     <main ref="main">
       <div
-        v-if="getContent && getContent.html"
+        v-if="Content.get && Content.get.html"
         name="contentWrapper"
-        :key="getContent"
-        v-html="getContent.html"
+        :key="Content.get"
+        v-html="Content.html"
       ></div>
     </main>
   </transition>
@@ -15,11 +15,11 @@
 <script setup>
 import { ref, watch, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { setContent, resetContent, getContent } from "@/state/contentState";
+import Content from "@/state/Content";
 import QueryService from "@/service/QueryService";
-import DataQuery from "@/queries/data";
-import ScrollIntoViewEvent from "@/events/ScrollIntoViewEvent";
-import ScrollIntoViewHelper from "@/helpers/ScrollIntoViewHelper";
+import DataQuery from "@/queries/DataQuery";
+import ScrollEvent from "@/events/ScrollEvent";
+import ScrollHelper from "@/helpers/ScrollHelper";
 import ElementEnums from "@/enums/ElementEnums";
 import ErrorComponent from "@/components/ErrorComponent";
 
@@ -29,14 +29,14 @@ let error = ref(false);
 const main = ref(null);
 
 watch(route, () => {
-  resetContent();
+  Content.reset();
   fetchData();
 });
 
-watch(ScrollIntoViewEvent.listen, () => {
-  const element = ScrollIntoViewEvent.listen.value;
+watch(ScrollEvent.listen, () => {
+  const element = ScrollEvent.listen.value;
   if (element && element === ElementEnums.MAIN) {
-    ScrollIntoViewHelper.scroll(main);
+    ScrollHelper.scrollToElement(main);
   }
 });
 
@@ -51,7 +51,7 @@ async function fetchData() {
   QueryService.fetch(DataQuery, { title: queryTitle })
     .then((response) => {
       if (response.dataItems.length > 0) {
-        setContent(response.dataItems[0]);
+        Content.set(response.dataItems[0]);
         if (error.value) {
           error.value = false;
         }

@@ -3,7 +3,7 @@
     class="landing-page-wrapper flex flex-col items-center justify-center"
   >
     <h1 class="m-auto text-8xl p-md lowercase">
-      <TypewriterComponent :text="getHeaderText"></TypewriterComponent>
+      <TypewriterComponent :text="headerText"></TypewriterComponent>
     </h1>
     <div class="mb-lg">
       <ArrowComponent
@@ -19,8 +19,8 @@
 import { ref, onMounted } from "vue";
 import ArrowComponent from "@/components/ArrowComponent.vue";
 import TypewriterComponent from "@/components/TypewriterComponent.vue";
-import { getHeaderText } from "@/state/metaDataState";
-import ScrollIntoViewEvent from "@/events/ScrollIntoViewEvent";
+import Meta from "@/state/Meta";
+import ScrollEvent from "@/events/ScrollEvent";
 import ArrowEnums from "@/enums/ArrowEnums";
 import ElementEnums from "@/enums/ElementEnums";
 
@@ -36,11 +36,12 @@ let arrowStyling = ref(`${ArrowEnums.DIRECTION.DOWN} ${ArrowEnums.SIZE.LG}`);
 let arrowOpacity = ref(arrowOpacityWeak);
 let arrowVisibility = ref("visibile");
 let arrowShowAndHideInterval;
+const headerText = Meta.getHeader;
 
 function arrowClick() {
   clearInterval(arrowShowAndHideInterval);
   arrowVisibility.value = "hidden";
-  ScrollIntoViewEvent.emit(ElementEnums.MAIN);
+  ScrollEvent.emit(ElementEnums.MAIN);
 }
 
 function startBlinkingAnimation(blinkSpeed) {

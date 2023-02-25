@@ -2,11 +2,11 @@ import { ref, computed } from "vue";
 
 const element = ref(null);
 
-const ScrollIntoViewEvent = {
+const ScrollEvent = {
   emit(scrollElement) {
     element.value = scrollElement;
   },
   listen: computed(() => element.value),
 };
 
-export default ScrollIntoViewEvent;
+export default ScrollEvent;
