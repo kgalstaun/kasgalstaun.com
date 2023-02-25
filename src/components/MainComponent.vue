@@ -33,12 +33,16 @@ watch(route, () => {
   fetchData();
 });
 
-watch(ScrollEvent.listen, () => {
-  const element = ScrollEvent.listen.value;
-  if (element && element === ElementEnums.MAIN) {
-    ScrollHelper.scrollToElement(main);
-  }
-});
+watch(
+  ScrollEvent.listen,
+  () => {
+    const element = ScrollEvent.listen.value;
+    if (element && element === ElementEnums.MAIN) {
+      ScrollHelper.scrollToElement(main);
+    }
+  },
+  { deep: true }
+);
 
 onMounted(() => {
   fetchData();

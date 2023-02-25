@@ -8,7 +8,7 @@
     <div class="mb-lg">
       <ArrowComponent
         @click="arrowClick"
-        :style="{ opacity: arrowOpacity, visibility: arrowVisibility }"
+        :style="{ opacity: arrowOpacity }"
         :arrowStyling="arrowStyling"
       />
     </div>
@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import ArrowComponent from "@/components/ArrowComponent.vue";
 import TypewriterComponent from "@/components/TypewriterComponent.vue";
 import Meta from "@/state/Meta";
@@ -28,19 +28,20 @@ onMounted(() => {
   startBlinkingAnimation(arrowBlinkSpeed);
 });
 
+onUnmounted(() => {
+  clearInterval(arrowShowAndHideInterval);
+});
+
 const arrowBlinkSpeed = 550;
 const arrowOpacityWeak = "20%";
 const arrowOpacityFull = "100%";
 
 let arrowStyling = ref(`${ArrowEnums.DIRECTION.DOWN} ${ArrowEnums.SIZE.LG}`);
 let arrowOpacity = ref(arrowOpacityWeak);
-let arrowVisibility = ref("visibile");
 let arrowShowAndHideInterval;
 const headerText = Meta.getHeader;
 
 function arrowClick() {
-  clearInterval(arrowShowAndHideInterval);
-  arrowVisibility.value = "hidden";
   ScrollEvent.emit(ElementEnums.MAIN);
 }
 
