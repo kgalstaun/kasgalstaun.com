@@ -1,12 +1,14 @@
 <template>
   <transition name="fade" mode="out-in">
     <main ref="main">
-      <div
-        v-if="Content.get && Content.get.html"
-        name="contentWrapper"
-        :key="Content.get"
-        v-html="Content.html"
-      ></div>
+      <div v-if="Content">
+        <ContentComponent
+          class="py-xl"
+          v-for="(content, index) in Content"
+          :key="index"
+          :content="content"
+        ></ContentComponent>
+      </div>
     </main>
   </transition>
   <ErrorComponent v-if="error"></ErrorComponent>
@@ -15,9 +17,10 @@
 <script setup>
 import { ref, watch, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import Content from "@/state/Content";
+import ContentComponent from "@/components/ContentComponent";
+import Content from "@/data/Content";
 import QueryService from "@/service/QueryService";
-import DataQuery from "@/queries/DataQuery";
+import ContentQuery from "@/queries/ContentQuery";
 import ScrollEvent from "@/events/ScrollEvent";
 import ScrollHelper from "@/helpers/ScrollHelper";
 import ElementEnums from "@/enums/ElementEnums";
@@ -29,7 +32,7 @@ let error = ref(false);
 const main = ref(null);
 
 watch(route, () => {
-  Content.reset();
+  Content.set(null);
   fetchData();
 });
 
@@ -52,10 +55,10 @@ async function fetchData() {
   const routeParam = route.params.id ? route.params.id : null;
   let queryTitle = routeParam ? routeParam : route.name;
 
-  QueryService.fetch(DataQuery, { title: queryTitle })
+  QueryService.fetch(ContentQuery, { title: queryTitle })
     .then((response) => {
-      if (response.dataItems.length > 0) {
-        Content.set(response.dataItems[0]);
+      if (response.contentArray.length > 0) {
+        Content.value = response.contentArray;
         if (error.value) {
           error.value = false;
         }

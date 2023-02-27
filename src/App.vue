@@ -9,7 +9,7 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import Meta from "@/state/Meta";
+import Meta from "@/data/Meta";
 import QueryService from "@/service/QueryService";
 import MetaQuery from "@/queries/MetaQuery";
 import HeaderComponent from "@/components/HeaderComponent.vue";

@@ -19,7 +19,7 @@
 import { ref, onMounted, onUnmounted } from "vue";
 import ArrowComponent from "@/components/ArrowComponent.vue";
 import TypewriterComponent from "@/components/TypewriterComponent.vue";
-import Meta from "@/state/Meta";
+import Meta from "@/data/Meta";
 import ScrollEvent from "@/events/ScrollEvent";
 import ArrowEnums from "@/enums/ArrowEnums";
 import ElementEnums from "@/enums/ElementEnums";
