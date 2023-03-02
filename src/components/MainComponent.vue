@@ -1,6 +1,6 @@
 <template>
   <transition name="fade" mode="out-in">
-    <main ref="main">
+    <main ref="main" class="px-lg">
       <div v-if="Content">
         <ContentComponent
           class="py-xl"
@@ -8,6 +8,7 @@
           :key="index"
           :content="content"
         ></ContentComponent>
+        <div class="text-center">arrow</div>
       </div>
     </main>
   </transition>
