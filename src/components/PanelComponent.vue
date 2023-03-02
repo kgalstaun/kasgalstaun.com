@@ -2,12 +2,11 @@
   <div class="flip-card">
     <div class="flip-card-inner">
       <div class="flip-card-front flex items-center justify-center">
-        <h2>{{ panel.title }}</h2>
+        <h2 class="mb-lg">{{ panel.title }}</h2>
       </div>
-      <div class="flip-card-back">
-        <h1>John Doe</h1>
-        <p>Architect & Engineer</p>
-        <p>We love that guy</p>
+      <div class="flip-card-back p-md">
+        <h1>{{ panel.title }}</h1>
+        <div class="panel-text-wrapper" v-html="panel.text.html"></div>
       </div>
     </div>
   </div>
@@ -25,16 +24,14 @@ const props = defineProps({
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card {
   background-color: transparent;
-  width: 18vw;
-  height: calc(58vh);
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
 }
 
 /* This container is needed to position the front and back side */
 .flip-card-inner {
   position: relative;
-  width: 18vw;
-  height: calc(58vh);
+  width: 22vw;
+  height: calc(60vh);
   text-align: center;
   transition: transform 0.8s;
   transform-style: preserve-3d;
@@ -64,7 +61,7 @@ const props = defineProps({
 
 /* Style the back side */
 .flip-card-back {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.335);
   color: black;
   transform: rotateY(180deg);
 }

@@ -1,5 +1,5 @@
 <template>
-  <div :class="['arrow', styling]" @click="arrowClick()">
+  <div :class="['arrow', styling]" @click="arrowClick(elementRef)">
     {{ arrow }}
   </div>
 </template>
@@ -15,11 +15,11 @@ const props = defineProps({
 });
 const arrow = ">";
 
-function arrowClick() {
-  if (!props.elementRef) {
+function arrowClick(elementRef) {
+  if (!elementRef) {
     return;
   } else {
-    ScrollEvent.emit(props.elementRef);
+    ScrollEvent.emit(elementRef);
   }
 }
 </script>

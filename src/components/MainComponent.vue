@@ -3,7 +3,7 @@
     <main ref="main" class="px-lg">
       <div v-if="Content">
         <ContentComponent
-          class="py-xl"
+          class="py-lg"
           v-for="(content, index) in Content"
           :key="index"
           :content="content"

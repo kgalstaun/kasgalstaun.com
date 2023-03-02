@@ -1,0 +1,12 @@
+div.panel-text-wrapper {
+    > p {
+        text-align: left;
+        font-size: 1.6rem;
+      }
+
+    > ul > li {
+        text-align: center;
+        font-size: 1.6rem;
+        text-emphasis: bold;
+    }
+}
