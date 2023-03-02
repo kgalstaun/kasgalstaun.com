@@ -1,14 +1,27 @@
 <template>
-  <div :class="['arrow', arrowStyling]">{{ arrow }}</div>
+  <div :class="['arrow', styling]" @click="arrowClick()">
+    {{ arrow }}
+  </div>
 </template>
 
 <script setup>
 import { defineProps } from "vue";
+import ScrollEvent from "@/events/ScrollEvent";
+
 // eslint-disable-next-line no-unused-vars
 const props = defineProps({
-  arrowStyling: String,
+  styling: String,
+  elementRef: String,
 });
 const arrow = ">";
+
+function arrowClick() {
+  if (!props.elementRef) {
+    return;
+  } else {
+    ScrollEvent.emit(props.elementRef);
+  }
+}
 </script>
 
 <style lang="scss" scoped>

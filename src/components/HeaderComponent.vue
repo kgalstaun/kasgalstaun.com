@@ -7,9 +7,9 @@
     </h1>
     <div class="mb-lg">
       <ArrowComponent
-        @click="arrowClick"
         :style="{ opacity: arrowOpacity }"
-        :arrowStyling="arrowStyling"
+        :styling="arrowStyling"
+        :elementRef="ElementEnums.MAIN"
       />
     </div>
   </header>
@@ -20,7 +20,6 @@ import { ref, onMounted, onUnmounted } from "vue";
 import ArrowComponent from "@/components/ArrowComponent.vue";
 import TypewriterComponent from "@/components/TypewriterComponent.vue";
 import Meta from "@/data/Meta";
-import ScrollEvent from "@/events/ScrollEvent";
 import ArrowEnums from "@/enums/ArrowEnums";
 import ElementEnums from "@/enums/ElementEnums";
 
@@ -40,10 +39,6 @@ let arrowStyling = ref(`${ArrowEnums.DIRECTION.DOWN} ${ArrowEnums.SIZE.LG}`);
 let arrowOpacity = ref(arrowOpacityWeak);
 let arrowShowAndHideInterval;
 const headerText = Meta.getHeader;
-
-function arrowClick() {
-  ScrollEvent.emit(ElementEnums.MAIN);
-}
 
 function startBlinkingAnimation(blinkSpeed) {
   arrowShowAndHideInterval = setInterval(() => {
