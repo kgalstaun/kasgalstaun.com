@@ -10,6 +10,9 @@ const ArrowEnums = {
     MD: "arrow-md",
     LG: "arrow-lg",
   },
+  BLINKSPEED: {
+    NORMAL: 550,
+  },
 };
 
 export default ArrowEnums;

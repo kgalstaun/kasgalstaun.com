@@ -1,4 +1,6 @@
 div.panel-text-wrapper {
+
+
     > p {
         text-align: left;
         font-size: 1.6rem;
@@ -8,5 +10,11 @@ div.panel-text-wrapper {
         text-align: center;
         font-size: 1.6rem;
         text-emphasis: bold;
+    }
+}
+
+.flip-card-front {
+    > .panel-text-wrapper {
+            transform: translateY(25%);
     }
 }

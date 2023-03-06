@@ -1,52 +1,28 @@
 <template>
-  <header
-    class="landing-page-wrapper flex flex-col items-center justify-center"
-  >
-    <h1 class="m-auto text-8xl p-md lowercase">
+  <header class="flex flex-col items-center justify-center">
+    <h1 v-if="headerText" class="m-auto text-8xl p-md lowercase">
       <TypewriterComponent :text="headerText"></TypewriterComponent>
     </h1>
-    <div class="mb-lg">
-      <ArrowComponent
-        :style="{ opacity: arrowOpacity }"
-        :styling="arrowStyling"
-        :elementRef="ElementEnums.MAIN"
-      />
+    <div v-if="arrowConfig" class="mb-lg">
+      <ArrowComponent :config="arrowConfig" />
     </div>
   </header>
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from "vue";
 import ArrowComponent from "@/components/ArrowComponent.vue";
 import TypewriterComponent from "@/components/TypewriterComponent.vue";
 import Meta from "@/data/Meta";
 import ArrowEnums from "@/enums/ArrowEnums";
 import ElementEnums from "@/enums/ElementEnums";
 
-onMounted(() => {
-  startBlinkingAnimation(arrowBlinkSpeed);
-});
+const arrowConfig = {
+  elementRef: ElementEnums.MAIN,
+  direction: ArrowEnums.DIRECTION.DOWN,
+  size: ArrowEnums.SIZE.LG,
+};
 
-onUnmounted(() => {
-  clearInterval(arrowShowAndHideInterval);
-});
-
-const arrowBlinkSpeed = 550;
-const arrowOpacityWeak = "20%";
-const arrowOpacityFull = "100%";
-
-let arrowStyling = ref(`${ArrowEnums.DIRECTION.DOWN} ${ArrowEnums.SIZE.LG}`);
-let arrowOpacity = ref(arrowOpacityWeak);
-let arrowShowAndHideInterval;
 const headerText = Meta.getHeader;
-
-function startBlinkingAnimation(blinkSpeed) {
-  arrowShowAndHideInterval = setInterval(() => {
-    arrowOpacity.value == arrowOpacityWeak
-      ? (arrowOpacity.value = arrowOpacityFull)
-      : (arrowOpacity.value = arrowOpacityWeak);
-  }, blinkSpeed);
-}
 </script>
 
 <style lang="scss" scoped>
@@ -55,5 +31,6 @@ header {
 }
 h1 {
   text-align: center;
+  transform: translateY(25%);
 }
 </style>

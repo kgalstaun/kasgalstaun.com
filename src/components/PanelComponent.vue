@@ -2,10 +2,17 @@
   <div class="flip-card">
     <div class="flip-card-inner">
       <div class="flip-card-front flex items-center justify-center">
-        <h2 class="mb-lg">{{ panel.title }}</h2>
+        <div
+          class="mb-lg panel-text-wrapper flex flex-col items-center justify-center"
+        >
+          <h1 class="m-auto">{{ panel.company }}</h1>
+          <ul>
+            <li>{{ panel.role }}</li>
+            <li>{{ panel.period }}</li>
+          </ul>
+        </div>
       </div>
       <div class="flip-card-back p-md">
-        <h1>{{ panel.title }}</h1>
         <div class="panel-text-wrapper" v-html="panel.text.html"></div>
       </div>
     </div>
@@ -64,5 +71,10 @@ const props = defineProps({
   background-color: rgba(255, 255, 255, 0.335);
   color: black;
   transform: rotateY(180deg);
+}
+
+li,
+h1 {
+  text-transform: lowercase;
 }
 </style>
