@@ -1,15 +1,14 @@
 <template>
   <transition name="fade" mode="out-in">
-    <main ref="main" class="px-lg">
-      <div v-if="Content">
-        <ContentComponent
-          class="py-lg"
-          v-for="(content, index) in Content"
-          :key="index"
-          :content="content"
-        ></ContentComponent>
-        <div class="text-center">arrow</div>
-      </div>
+    <main ref="main" class="px-lg flex flex-col items-center justify-center">
+      <template v-if="Content">
+        <template v-for="(content, index) in Content" :key="index">
+          <ContentComponent class="py-lg" :content="content"></ContentComponent>
+          <div v-if="arrowConfig" class="py-md">
+            <ArrowComponent :config="arrowConfig" />
+          </div>
+        </template>
+      </template>
     </main>
   </transition>
   <ErrorComponent v-if="error"></ErrorComponent>
@@ -19,18 +18,26 @@
 import { ref, watch, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import ContentComponent from "@/components/ContentComponent";
+import ArrowComponent from "@/components/ArrowComponent";
 import Content from "@/data/Content";
 import QueryService from "@/service/QueryService";
 import ContentQuery from "@/queries/ContentQuery";
 import ScrollEvent from "@/events/ScrollEvent";
 import ScrollHelper from "@/helpers/ScrollHelper";
 import ElementEnums from "@/enums/ElementEnums";
+import ArrowEnums from "@/enums/ArrowEnums";
+
 import ErrorComponent from "@/components/ErrorComponent";
 
 const route = useRoute();
 const router = useRouter();
 let error = ref(false);
 const main = ref(null);
+
+const arrowConfig = {
+  direction: ArrowEnums.DIRECTION.DOWN,
+  size: ArrowEnums.SIZE.LG,
+};
 
 watch(route, () => {
   Content.set(null);
