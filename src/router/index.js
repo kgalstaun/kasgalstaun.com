@@ -1,16 +1,16 @@
 import { createRouter, createWebHistory } from "vue-router";
-import MainComponent from "@/components/MainComponent.vue";
+import DefaultPageComponent from "@/components/DefaultPageComponent.vue";
 
 const routes = [
   {
     path: "/",
     name: "werk",
-    component: MainComponent,
+    component: DefaultPageComponent,
   },
   {
     path: "/werk/:id",
     name: "werkItem",
-    component: MainComponent,
+    component: DefaultPageComponent,
   },
   {
     path: "/:pathMatch(.*)*",

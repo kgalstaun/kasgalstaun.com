@@ -2,10 +2,8 @@
   <div class="flip-card">
     <div class="flip-card-inner">
       <div class="flip-card-front flex items-center justify-center">
-        <div
-          class="mb-lg panel-text-wrapper flex flex-col items-center justify-center"
-        >
-          <h1 class="m-auto">{{ panel.company }}</h1>
+        <div class="mb-lg panel-text-wrapper block">
+          <h1 class="m-auto">{{ panel.title }}</h1>
           <ul>
             <li>{{ panel.role }}</li>
             <li>{{ panel.period }}</li>
@@ -38,7 +36,7 @@ const props = defineProps({
 .flip-card-inner {
   position: relative;
   width: 22vw;
-  height: calc(60vh);
+  height: 60vh;
   text-align: center;
   transition: transform 0.8s;
   transform-style: preserve-3d;

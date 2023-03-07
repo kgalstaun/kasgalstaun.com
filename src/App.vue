@@ -1,7 +1,7 @@
 <template>
   <template v-if="loaded && !error">
-    <HeaderComponent />
-    <MainComponent />
+    <LandingPageComponent>/</LandingPageComponent>
+    <DefaultPageComponent />
     <FooterComponent>{{ Meta.getFooterText }}</FooterComponent>
     <ErrorComponent v-if="error"></ErrorComponent>
   </template>
@@ -9,13 +9,13 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import Meta from "@/data/Meta";
-import QueryService from "@/service/QueryService";
-import MetaQuery from "@/queries/MetaQuery";
-import HeaderComponent from "@/components/HeaderComponent.vue";
-import MainComponent from "@/components/MainComponent.vue";
+import LandingPageComponent from "./components/LandingPageComponent";
+import DefaultPageComponent from "@/components/DefaultPageComponent.vue";
 import FooterComponent from "@/components/FooterComponent.vue";
 import ErrorComponent from "@/components/ErrorComponent";
+import QueryService from "@/service/QueryService";
+import MetaQuery from "@/queries/MetaQuery";
+import Meta from "@/data/Meta";
 
 onMounted(() => {
   fetchMetaData();

@@ -1,13 +1,29 @@
 <template>
   <transition name="fade" mode="out-in">
-    <main ref="main" class="px-lg flex flex-col items-center justify-center">
+    <main>
       <template v-if="Content">
-        <template v-for="(content, index) in Content" :key="index">
-          <ContentComponent class="py-lg" :content="content"></ContentComponent>
-          <div v-if="arrowConfig" class="py-md">
-            <ArrowComponent :config="arrowConfig" />
-          </div>
-        </template>
+        <div
+          class="h-screen p-lg flex flex-col items-center justify-between"
+          v-for="(content, index) in Content"
+          :key="index"
+          ref="contentRefs"
+        >
+          <div
+            class="content-introduction-wrapper text-center px-xl pt-md"
+            v-html="content.introduction.html"
+          ></div>
+          <ContentComponent :content="content"></ContentComponent>
+          <ArrowComponent
+            v-if="arrowConfig && index < Content.length"
+            :config="{
+              ...arrowConfig,
+              elementRef: {
+                section: ElementEnums.CONTENT,
+                value: index + 1,
+              },
+            }"
+          />
+        </div>
       </template>
     </main>
   </transition>
@@ -26,15 +42,16 @@ import ScrollEvent from "@/events/ScrollEvent";
 import ScrollHelper from "@/helpers/ScrollHelper";
 import ElementEnums from "@/enums/ElementEnums";
 import ArrowEnums from "@/enums/ArrowEnums";
-
 import ErrorComponent from "@/components/ErrorComponent";
 
 const route = useRoute();
 const router = useRouter();
 let error = ref(false);
 const main = ref(null);
+let contentRefs = ref([]);
 
 const arrowConfig = {
+  elementRef: { section: ElementEnums.CONTENT },
   direction: ArrowEnums.DIRECTION.DOWN,
   size: ArrowEnums.SIZE.LG,
 };
@@ -47,10 +64,9 @@ watch(route, () => {
 watch(
   ScrollEvent.listen,
   () => {
-    const element = ScrollEvent.listen.value;
-    if (element && element === ElementEnums.MAIN) {
-      ScrollHelper.scrollToElement(main);
-    }
+    const elementRef = ScrollEvent.listen.value;
+    if (!elementRef) return;
+    scrollToElement(elementRef);
   },
   { deep: true }
 );
@@ -88,10 +104,26 @@ function overrideAnchorTags(elements) {
     });
   });
 }
+
+function scrollToElement(elementRef) {
+  if (elementRef.section === ElementEnums.CONTENT) {
+    console.log(contentRefs.value[elementRef.value]);
+    ScrollHelper.scrollToElement(contentRefs.value[elementRef.value]);
+  } else {
+    if (elementRef.section === ElementEnums.MAIN) {
+      ScrollHelper.scrollToElement(main.value);
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
 main {
   height: 100vh;
+}
+.content-introduction {
+  p {
+    padding-bottom: 0rem;
+  }
 }
 </style>

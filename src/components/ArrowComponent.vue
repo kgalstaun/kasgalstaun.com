@@ -58,14 +58,16 @@ function startBlinkingAnimation() {
 
 <style lang="scss" scoped>
 .arrow {
+  display: block;
   color: white;
   cursor: pointer;
+  line-height: 5rem;
 
   &-down {
-    transform: rotate(90deg);
+    transform: rotate(90deg) translateY(25%);
   }
   &-lg {
-    scale: 7;
+    font-size: 8rem;
   }
 }
 </style>

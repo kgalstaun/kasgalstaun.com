@@ -5,8 +5,8 @@ const ContentQuery = gql`
     contentArray {
       title
       panels {
-        company
-        companyType
+        title
+        type
         location
         role
         period
