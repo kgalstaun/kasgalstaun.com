@@ -11,7 +11,7 @@
           class="content-introduction-wrapper text-center px-xl pt-md"
           v-html="content.text.html"
         ></div>
-        <ContentComponent :content="content"></ContentComponent>
+        <PanelWrapperComponent :content="content"></PanelWrapperComponent>
         <ArrowComponent
           v-if="arrowConfig && index < Content.length"
           :config="{
@@ -31,8 +31,9 @@
 <script setup>
 import { ref, watch, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import ContentComponent from "@/components/ContentComponent";
-import ArrowComponent from "@/components/ArrowComponent";
+import PanelWrapperComponent from "@/components/panel-page/PanelWrapperComponent";
+import ArrowComponent from "@/components/generic/ArrowComponent";
+import ErrorComponent from "@/components/generic/ErrorComponent";
 import Content from "@/data/Content";
 import QueryService from "@/service/QueryService";
 import ContentQuery from "@/queries/ContentQuery";
@@ -40,7 +41,6 @@ import ScrollEvent from "@/events/ScrollEvent";
 import ScrollHelper from "@/helpers/ScrollHelper";
 import ElementEnums from "@/enums/ElementEnums";
 import ArrowEnums from "@/enums/ArrowEnums";
-import ErrorComponent from "@/components/ErrorComponent";
 
 const route = useRoute();
 const router = useRouter();

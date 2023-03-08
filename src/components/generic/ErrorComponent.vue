@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import MessageComponent from "@/components/MessageComponent";
+import MessageComponent from "@/components/generic/MessageComponent";
 import DictionaryService from "@/service/DictionaryService";
 
 const getText = DictionaryService.get;

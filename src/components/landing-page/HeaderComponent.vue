@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-import TypewriterComponent from "@/components/TypewriterComponent.vue";
+import TypewriterComponent from "@/components/generic/TypewriterComponent.vue";
 import Meta from "@/data/Meta";
 
 const headerText = Meta.getHeader;

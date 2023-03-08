@@ -1,15 +1,15 @@
 <template>
   <div class="h-screen p-lg flex justify-center items-end">
     <div class="header-wrapper">
-      <HeaderComponent class="h-full" />
+      <HeaderComponent />
     </div>
     <ArrowComponent v-if="arrowConfig" :config="arrowConfig" />
   </div>
 </template>
 
 <script setup>
-import HeaderComponent from "@/components/HeaderComponent";
-import ArrowComponent from "@/components/ArrowComponent";
+import HeaderComponent from "@/components/landing-page/HeaderComponent";
+import ArrowComponent from "@/components/generic/ArrowComponent";
 import ArrowEnums from "@/enums/ArrowEnums";
 import ElementEnums from "@/enums/ElementEnums";
 
@@ -26,8 +26,5 @@ const arrowConfig = {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
-.arrow-wrapper {
-  position: relative;
 }
 </style>

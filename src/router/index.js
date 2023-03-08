@@ -1,16 +1,16 @@
 import { createRouter, createWebHistory } from "vue-router";
-import PanelPageComponent from "@/components/PanelPageComponent";
+import MotivationPageComponent from "@/components/motivation-page/MotivationPageComponent";
 
 const routes = [
   {
     path: "/",
     name: "werk",
-    component: PanelPageComponent,
+    component: MotivationPageComponent,
   },
   {
     path: "/werk/:id",
     name: "werkItem",
-    component: PanelPageComponent,
+    component: MotivationPageComponent,
   },
   {
     path: "/:pathMatch(.*)*",

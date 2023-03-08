@@ -1,3 +1,4 @@
+@@ -1,22 +0,0 @@
 <template>
   <div v-if="content">
     <div v-if="panels" class="w-full flex justify-center items-center pt-">
@@ -9,7 +10,7 @@
 </template>
 
 <script setup>
-import PanelComponent from "@/components/PanelComponent";
+import PanelComponent from "@/components/panel-page/PanelComponent";
 import { defineProps, computed } from "vue";
 // eslint-disable-next-line no-unused-vars
 const props = defineProps({
