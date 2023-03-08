@@ -15,7 +15,7 @@ const headerText = Meta.getHeader;
 
 <style lang="scss" scoped>
 h1 {
-  font-size: 6.5rem;
+  font-size: 6.2rem;
   text-align: center;
 }
 </style>

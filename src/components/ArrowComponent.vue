@@ -17,8 +17,8 @@ const props = defineProps({
   config: Object,
 });
 const arrow = ">";
-const arrowOpacityWeak = "20%";
-const arrowOpacityFull = "100%";
+const arrowOpacityWeak = "10%";
+const arrowOpacityFull = "40%";
 
 let arrowBlinkSpeed = 550;
 let arrowOpacity = ref(arrowOpacityWeak);

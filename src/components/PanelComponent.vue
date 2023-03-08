@@ -4,7 +4,7 @@
       <div class="flip-card-front flex items-center justify-center">
         <div class="mb-lg panel-text-wrapper block">
           <h1 class="m-auto">{{ panel.title }}</h1>
-          <ul>
+          <ul v-if="panel.role || panel.period">
             <li>{{ panel.role }}</li>
             <li>{{ panel.period }}</li>
           </ul>

@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-import PanelComponent from "@/components/PanelComponent.vue";
+import PanelComponent from "@/components/PanelComponent";
 import { defineProps, computed } from "vue";
 // eslint-disable-next-line no-unused-vars
 const props = defineProps({

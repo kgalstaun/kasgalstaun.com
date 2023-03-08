@@ -10,7 +10,7 @@
         >
           <div
             class="content-introduction-wrapper text-center px-xl pt-md"
-            v-html="content.introduction.html"
+            v-html="content.text.html"
           ></div>
           <ContentComponent :content="content"></ContentComponent>
           <ArrowComponent
