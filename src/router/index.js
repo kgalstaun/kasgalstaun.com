@@ -1,16 +1,16 @@
 import { createRouter, createWebHistory } from "vue-router";
-import DefaultPageComponent from "@/components/DefaultPageComponent.vue";
+import PanelPageComponent from "@/components/PanelPageComponent";
 
 const routes = [
   {
     path: "/",
     name: "werk",
-    component: DefaultPageComponent,
+    component: PanelPageComponent,
   },
   {
     path: "/werk/:id",
     name: "werkItem",
-    component: DefaultPageComponent,
+    component: PanelPageComponent,
   },
   {
     path: "/:pathMatch(.*)*",

@@ -1,31 +1,29 @@
 <template>
   <transition name="fade" mode="out-in">
-    <main>
-      <template v-if="Content">
+    <div v-if="Content">
+      <div
+        class="h-screen p-lg flex flex-col items-center justify-between"
+        v-for="(content, index) in Content"
+        :key="index"
+        ref="contentRefs"
+      >
         <div
-          class="h-screen p-lg flex flex-col items-center justify-between"
-          v-for="(content, index) in Content"
-          :key="index"
-          ref="contentRefs"
-        >
-          <div
-            class="content-introduction-wrapper text-center px-xl pt-md"
-            v-html="content.text.html"
-          ></div>
-          <ContentComponent :content="content"></ContentComponent>
-          <ArrowComponent
-            v-if="arrowConfig && index < Content.length"
-            :config="{
-              ...arrowConfig,
-              elementRef: {
-                section: ElementEnums.CONTENT,
-                value: index + 1,
-              },
-            }"
-          />
-        </div>
-      </template>
-    </main>
+          class="content-introduction-wrapper text-center px-xl pt-md"
+          v-html="content.text.html"
+        ></div>
+        <ContentComponent :content="content"></ContentComponent>
+        <ArrowComponent
+          v-if="arrowConfig && index < Content.length"
+          :config="{
+            ...arrowConfig,
+            elementRef: {
+              section: ElementEnums.CONTENT,
+              value: index + 1,
+            },
+          }"
+        />
+      </div>
+    </div>
   </transition>
   <ErrorComponent v-if="error"></ErrorComponent>
 </template>
@@ -118,9 +116,6 @@ function scrollToElement(elementRef) {
 </script>
 
 <style lang="scss" scoped>
-main {
-  height: 100vh;
-}
 .content-introduction {
   p {
     padding-bottom: 0rem;

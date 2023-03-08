@@ -1,16 +1,20 @@
 <template>
   <template v-if="loaded && !error">
-    <LandingPageComponent>/</LandingPageComponent>
-    <DefaultPageComponent />
-    <FooterComponent>{{ Meta.getFooterText }}</FooterComponent>
-    <ErrorComponent v-if="error"></ErrorComponent>
+    <main>
+      <LandingPageComponent />
+      <PanelPageComponent />
+      <MotivationComponent />
+    </main>
+    <FooterComponent />
+    <ErrorComponent v-if="error" />
   </template>
 </template>
 
 <script setup>
 import { ref, onMounted } from "vue";
 import LandingPageComponent from "./components/LandingPageComponent";
-import DefaultPageComponent from "@/components/DefaultPageComponent.vue";
+import PanelPageComponent from "@/components/PanelPageComponent";
+import MotivationComponent from "@/components/MotivationComponent";
 import FooterComponent from "@/components/FooterComponent.vue";
 import ErrorComponent from "@/components/ErrorComponent";
 import QueryService from "@/service/QueryService";
