@@ -8,7 +8,7 @@
       <div class="real p-lg">
         <div v-for="(paragraph, index) in Motivation.letter" :key="index">
           <p>{{ paragraph }}</p>
-          <template v-if="index + 1 < Motivation.letter.length">
+          <template v-if="isTheLastParagraph(index, Motivation.letter)">
             <br /><br />
           </template>
         </div>
@@ -16,7 +16,7 @@
       <div class="pseudo p-lg">
         <div v-for="(paragraph, index) in Motivation.letter" :key="index">
           <p>{{ paragraph }}</p>
-          <template v-if="index + 1 < Motivation.letter.length">
+          <template v-if="isTheLastParagraph(index, Motivation.letter)">
             <br /><br />
           </template>
         </div>
@@ -67,6 +67,10 @@ async function fetchMotivationData() {
       loaded.value = true;
     })
     .catch(() => (error.value = true));
+}
+
+function isTheLastParagraph(index, letter) {
+  return index + 1 < letter.length;
 }
 </script>
 

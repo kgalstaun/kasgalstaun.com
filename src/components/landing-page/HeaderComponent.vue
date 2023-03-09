@@ -1,16 +1,21 @@
 <template>
   <header>
-    <h1 v-if="headerText">
-      <TypewriterComponent :text="headerText"></TypewriterComponent>
+    <h1 v-if="animatedText">
+      {{ animatedText }}
     </h1>
   </header>
 </template>
 
 <script setup>
-import TypewriterComponent from "@/components/generic/TypewriterComponent.vue";
+import { ref, onMounted } from "vue";
+import Typewriter from "@/helpers/TypewriterHelper";
 import Meta from "@/data/Meta";
 
-const headerText = Meta.getHeader;
+onMounted(() => {
+  Typewriter.startAnimation(animatedText, Meta.getHeader.value);
+});
+
+let animatedText = ref("");
 </script>
 
 <style lang="scss" scoped>
