@@ -9,10 +9,16 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import Typewriter from "@/helpers/TypewriterHelper";
+import TypewriterEnums from "@/enums/TypewriterEnums";
+
 import Meta from "@/data/Meta";
 
 onMounted(() => {
-  Typewriter.startAnimation(animatedText, Meta.getHeader.value);
+  Typewriter.startAnimation(
+    animatedText,
+    Meta.getHeader.value,
+    TypewriterEnums.SPEED.NORMAL
+  );
 });
 
 let animatedText = ref("");

@@ -1,13 +1,11 @@
 <template>
   <div
     ref="motivation"
-    v-if="Motivation"
+    v-if="loaded && Motivation"
     class="h-screen p-lg flex flex-row justify-around items-start"
   >
     <MotivationLetterComponent />
-    <div class="py-md px-xl mx-xl">
-      <MotivationSidebarComponent />
-    </div>
+    <MotivationSidebarComponent class="py-md px-xl mx-xl" />
   </div>
 </template>
 
@@ -51,6 +49,7 @@ async function fetchMotivationData() {
     .then((data) => {
       let motivationData = data.motivations[0];
       Motivation.value = motivationData;
+      console.log(Motivation.value);
       loaded.value = true;
     })
     .catch(() => (error.value = true));

@@ -1,9 +1,9 @@
 <template>
   <div class="motivation-letter">
     <div class="real p-lg">
-      <div v-for="(paragraph, index) in Motivation.letter" :key="index">
+      <div v-for="(paragraph, index) in motivationLetterAnimation" :key="index">
         <p>{{ paragraph }}</p>
-        <template v-if="isTheLastParagraph(index, Motivation.letter)">
+        <template v-if="isNotTheLastParagraph(index, Motivation.letter)">
           <br /><br />
         </template>
       </div>
@@ -11,7 +11,7 @@
     <div class="pseudo p-lg">
       <div v-for="(paragraph, index) in Motivation.letter" :key="index">
         <p>{{ paragraph }}</p>
-        <template v-if="isTheLastParagraph(index, Motivation.letter)">
+        <template v-if="isNotTheLastParagraph(index, Motivation.letter)">
           <br /><br />
         </template>
       </div>
@@ -20,9 +20,34 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from "vue";
+import Typewriter from "@/helpers/TypewriterHelper";
+import TypewriterEnums from "@/enums/TypewriterEnums";
+import TimeOutHelper from "@/helpers/TimeOutHelper.js";
 import Motivation from "@/data/Motivation";
 
-function isTheLastParagraph(index, letter) {
+const motivationLetterAnimation = ref([]);
+
+onMounted(() => {
+  Motivation.value.letter.forEach(() => {
+    motivationLetterAnimation.value.push("");
+  });
+  writeLetter();
+});
+
+async function writeLetter() {
+  for (let [index, paragraph] of Motivation.value.letter.entries()) {
+    await TimeOutHelper.createCustomTimeout(222);
+    await Typewriter.startAnimation(
+      motivationLetterAnimation,
+      paragraph,
+      TypewriterEnums.SPEED.FAST,
+      index
+    );
+  }
+}
+
+function isNotTheLastParagraph(index, letter) {
   return index + 1 < letter.length;
 }
 </script>
