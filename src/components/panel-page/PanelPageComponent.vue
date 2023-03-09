@@ -16,10 +16,7 @@
           v-if="arrowConfig && index < Content.length"
           :config="{
             ...arrowConfig,
-            elementRef: {
-              section: ElementEnums.CONTENT,
-              value: index + 1,
-            },
+            elementRef: setElementRef(index, Content),
           }"
         />
       </div>
@@ -105,12 +102,24 @@ function overrideAnchorTags(elements) {
 
 function scrollToElement(elementRef) {
   if (elementRef.section === ElementEnums.CONTENT) {
-    console.log(contentRefs.value[elementRef.value]);
     ScrollHelper.scrollToElement(contentRefs.value[elementRef.value]);
   } else {
     if (elementRef.section === ElementEnums.MAIN) {
       ScrollHelper.scrollToElement(main.value);
     }
+  }
+}
+
+function setElementRef(index, contentArray) {
+  if (index + 1 < contentArray.length) {
+    return {
+      section: ElementEnums.CONTENT,
+      value: index + 1,
+    };
+  } else if (index + 1 === contentArray.length) {
+    return {
+      section: ElementEnums.MOTIVATION,
+    };
   }
 }
 </script>
