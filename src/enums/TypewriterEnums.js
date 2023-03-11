@@ -1,7 +1,7 @@
 const TypewriterEnums = {
   SPEED: {
-    NORMAL: 50,
-    FAST: 8,
+    NORMAL: 55,
+    FAST: 10,
   },
 };
 

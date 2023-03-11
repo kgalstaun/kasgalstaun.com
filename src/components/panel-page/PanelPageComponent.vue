@@ -1,27 +1,25 @@
 <template>
-  <transition name="fade" mode="out-in">
-    <div v-if="Content">
+  <div v-if="Content">
+    <div
+      class="h-screen p-lg flex flex-col items-center justify-between"
+      v-for="(content, index) in Content"
+      :key="index"
+      ref="contentRefs"
+    >
       <div
-        class="h-screen p-lg flex flex-col items-center justify-between"
-        v-for="(content, index) in Content"
-        :key="index"
-        ref="contentRefs"
-      >
-        <div
-          class="content-introduction-wrapper text-center px-xl pt-md"
-          v-html="content.text.html"
-        ></div>
-        <PanelWrapperComponent :content="content"></PanelWrapperComponent>
-        <ArrowComponent
-          v-if="arrowConfig && index < Content.length"
-          :config="{
-            ...arrowConfig,
-            elementRef: setElementRef(index, Content),
-          }"
-        />
-      </div>
+        class="content-introduction-wrapper text-center px-xl pt-md"
+        v-html="content.text.html"
+      ></div>
+      <PanelWrapperComponent :content="content"></PanelWrapperComponent>
+      <ArrowComponent
+        v-if="arrowConfig && index < Content.length"
+        :config="{
+          ...arrowConfig,
+          elementRef: setElementRef(index, Content),
+        }"
+      />
     </div>
-  </transition>
+  </div>
   <ErrorComponent v-if="error"></ErrorComponent>
 </template>
 

@@ -8,7 +8,6 @@ const Typewriter = {
     for (const character of textArray) {
       await TimeOutHelper.createCustomTimeout(speed);
       if (index >= 0) {
-        console.log(111);
         animatedText.value[index] = animatedText.value[index] + character;
       } else {
         animatedText.value = animatedText.value + character;

@@ -1,11 +1,14 @@
 <template>
-  <div
-    ref="motivation"
-    v-if="loaded && Motivation"
-    class="h-screen p-lg flex flex-row justify-around items-start"
-  >
-    <MotivationLetterComponent />
-    <MotivationSidebarComponent class="py-md px-xl mx-xl" />
+  <div ref="motivation" class="h-screen p-lg">
+    <Transition>
+      <div
+        v-if="inViewport && loaded && Motivation"
+        class="flex flex-row justify-center items-start"
+      >
+        <MotivationLetterComponent ref="motivation-letter" />
+        <MotivationSidebarComponent class="py-md mx-xl" />
+      </div>
+    </Transition>
   </div>
 </template>
 
@@ -13,6 +16,7 @@
 import { ref, onMounted, watch } from "vue";
 import MotivationSidebarComponent from "./MotivationSidebarComponent";
 import MotivationLetterComponent from "./MotivationLetterComponent";
+import IntersectionHelper from "@/helpers/IntersectionHelper";
 import QueryService from "@/service/QueryService";
 import MotivationQuery from "@/queries/MotivationQuery";
 import Motivation from "@/data/Motivation";
@@ -21,11 +25,19 @@ import ScrollHelper from "@/helpers/ScrollHelper";
 import ElementEnums from "@/enums/ElementEnums";
 
 const motivation = ref(null);
+const inViewport = ref(false);
 let loaded = ref(false);
 let error = ref(false);
+let observer = null;
 
 onMounted(() => {
   fetchMotivationData();
+
+  observer = new IntersectionObserver(
+    IntersectionHelper.createCallback(inViewport),
+    IntersectionHelper.createOptions()
+  );
+  observer.observe(motivation.value);
 });
 
 watch(
@@ -38,6 +50,10 @@ watch(
   { deep: true }
 );
 
+watch(inViewport, () => {
+  observer.unobserve(motivation.value);
+});
+
 function scrollToElement(elementRef) {
   if (elementRef.section === ElementEnums.MOTIVATION) {
     ScrollHelper.scrollToElement(motivation.value);
@@ -49,7 +65,6 @@ async function fetchMotivationData() {
     .then((data) => {
       let motivationData = data.motivations[0];
       Motivation.value = motivationData;
-      console.log(Motivation.value);
       loaded.value = true;
     })
     .catch(() => (error.value = true));
