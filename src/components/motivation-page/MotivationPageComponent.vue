@@ -28,16 +28,12 @@ const motivation = ref(null);
 const inViewport = ref(false);
 let loaded = ref(false);
 let error = ref(false);
-let observer = null;
 
 onMounted(() => {
   fetchMotivationData();
-
-  observer = new IntersectionObserver(
-    IntersectionHelper.createCallback(inViewport),
-    IntersectionHelper.createOptions()
+  IntersectionHelper.createObserver(motivation.value, inViewport).observe(
+    motivation.value
   );
-  observer.observe(motivation.value);
 });
 
 watch(
@@ -49,10 +45,6 @@ watch(
   },
   { deep: true }
 );
-
-watch(inViewport, () => {
-  observer.unobserve(motivation.value);
-});
 
 function scrollToElement(elementRef) {
   if (elementRef.section === ElementEnums.MOTIVATION) {

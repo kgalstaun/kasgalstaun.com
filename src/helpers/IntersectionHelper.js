@@ -1,15 +1,15 @@
+const options = { root: null, rootMargin: "0px", threshold: 0.1 };
+
 const IntersectionHelper = {
-  createOptions() {
-    return { root: null, rootMargin: "0px", threshold: 0.1 };
-  },
-  createCallback(viewPortRef) {
-    return (entries) => {
+  createObserver(elementRef, inViewport) {
+    return new IntersectionObserver((entries, observer) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          viewPortRef.value = true;
+          inViewport.value = true;
+          observer.unobserve(elementRef);
         }
       });
-    };
+    }, options);
   },
 };
 
