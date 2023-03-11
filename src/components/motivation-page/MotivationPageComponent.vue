@@ -6,7 +6,7 @@
         class="flex flex-row justify-center items-start"
       >
         <MotivationLetterComponent ref="motivation-letter" />
-        <MotivationSidebarComponent class="py-md mx-xl" />
+        <MotivationSidebarComponent class="ml-xl" />
       </div>
     </Transition>
   </div>

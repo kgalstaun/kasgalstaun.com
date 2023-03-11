@@ -1,5 +1,7 @@
 <template>
-  <div>sidebar</div>
+  <div class="motivation-sidebar" v-html="Motivation.infoLinks.html"></div>
 </template>
 
-<script setup></script>
+<script setup>
+import Motivation from "@/data/Motivation";
+</script>
