@@ -1,6 +1,9 @@
 <template>
   <Transition>
-    <div v-if="mounted" class="h-screen p-lg flex justify-center items-end">
+    <div
+      v-if="mounted"
+      class="h-screen p-sm sm:p-lg flex justify-center items-end"
+    >
       <div class="header-wrapper">
         <HeaderComponent />
       </div>

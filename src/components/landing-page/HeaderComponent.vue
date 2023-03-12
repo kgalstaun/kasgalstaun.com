@@ -32,7 +32,7 @@ let animatedText = ref("");
 
 <style lang="scss" scoped>
 h1 {
-  font-size: 6.2rem;
+  font-size: 5.2rem;
   text-align: center;
 
   &.pseudo {
@@ -43,12 +43,12 @@ h1 {
     position: absolute;
   }
 
-  @media screen and (max-width: $screen-size-xl) {
+  @media screen and (min-width: $screen-size-sm) {
     font-size: 7.2rem;
   }
 
-  @media screen and (max-width: $screen-size-sm) {
-    font-size: 5.2rem;
+  @media screen and (min-width: $screen-size-xl) {
+    font-size: 6.2rem;
   }
 }
 </style>

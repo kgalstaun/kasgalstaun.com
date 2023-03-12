@@ -1,7 +1,7 @@
 <template>
-  <div v-if="Content">
+  <div v-if="Content" class="panel-page-wrapper">
     <div
-      class="h-screen p-lg flex flex-col items-center justify-between"
+      class="min-h-screen sm:h-screen p-sm sm:p-lg flex flex-col items-center justify-between"
       v-for="(content, index) in Content"
       :key="index"
       ref="contentRefs"
@@ -9,11 +9,12 @@
       <TransitionGroup>
         <template v-if="viewportRefs[index]">
           <div
-            class="content-introduction-wrapper text-center px-xl pt-md"
+            class="content-introduction-wrapper text-center px-md pb-md sm:p-xl sm:pt-md sm:pb-xs"
             v-html="content.text.html"
           ></div>
           <PanelWrapperComponent :content="content"></PanelWrapperComponent>
           <ArrowComponent
+            class="hidden sm:block"
             v-if="arrowConfig && index < Content.length"
             :config="{
               ...arrowConfig,
@@ -138,6 +139,11 @@ function setElementRef(index, contentArray) {
 </script>
 
 <style lang="scss" scoped>
+.panel-page-wrapper {
+  div:first-child {
+    padding-top: 2.6rem;
+  }
+}
 .content-introduction {
   p {
     padding-bottom: 0rem;

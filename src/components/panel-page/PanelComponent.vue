@@ -35,8 +35,18 @@ const props = defineProps({
 /* This container is needed to position the front and back side */
 .flip-card-inner {
   position: relative;
-  width: 22vw;
-  height: 60vh;
+
+  width: 100%;
+
+  @media screen and (min-width: $screen-size-sm) {
+    width: 22vw;
+  }
+
+  height: 65vh;
+
+  @media screen and (min-width: $screen-size-sm) {
+    height: 60vh;
+  }
   text-align: center;
   transition: transform 0.8s;
   transform-style: preserve-3d;

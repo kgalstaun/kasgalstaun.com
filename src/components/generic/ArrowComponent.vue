@@ -58,7 +58,6 @@ function startBlinkingAnimation() {
 
 <style lang="scss" scoped>
 .arrow {
-  display: block;
   color: white;
   cursor: pointer;
   line-height: 5rem;
