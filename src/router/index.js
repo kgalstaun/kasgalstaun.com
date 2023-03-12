@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import MotivationPageComponent from "@/components/motivation-page/MotivationPageComponent";
 
+// NOT IN USE ATM, HERE FOR FUTURE REFERENCE
+
 const routes = [
   {
     path: "/",

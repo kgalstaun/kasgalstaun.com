@@ -24,8 +24,9 @@
 </template>
 
 <script setup>
+/* eslint-disable */ 
 import { ref, watch, onMounted } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRouter } from "vue-router";
 import PanelWrapperComponent from "@/components/panel-page/PanelWrapperComponent";
 import ArrowComponent from "@/components/generic/ArrowComponent";
 import ErrorComponent from "@/components/generic/ErrorComponent";
@@ -37,7 +38,6 @@ import ScrollHelper from "@/helpers/ScrollHelper";
 import ElementEnums from "@/enums/ElementEnums";
 import ArrowEnums from "@/enums/ArrowEnums";
 
-const route = useRoute();
 const router = useRouter();
 let error = ref(false);
 const main = ref(null);
@@ -49,8 +49,7 @@ const arrowConfig = {
   size: ArrowEnums.SIZE.LG,
 };
 
-watch(route, () => {
-  Content.set(null);
+onMounted(() => {
   fetchData();
 });
 
@@ -61,18 +60,11 @@ watch(
     if (!elementRef) return;
     scrollToElement(elementRef);
   },
-  { deep: true }
+  { deep: true,}
 );
 
-onMounted(() => {
-  fetchData();
-});
-
 async function fetchData() {
-  const routeParam = route.params.id ? route.params.id : null;
-  let queryTitle = routeParam ? routeParam : route.name;
-
-  QueryService.fetch(ContentQuery, { title: queryTitle })
+  QueryService.fetch(ContentQuery)
     .then((response) => {
       if (response.contentArray.length > 0) {
         Content.value = response.contentArray;
