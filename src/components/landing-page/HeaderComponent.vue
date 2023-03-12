@@ -1,7 +1,10 @@
 <template>
-  <header>
-    <h1 v-if="animatedText">
+  <header v-if="animatedText">
+    <h1 class="real">
       {{ animatedText }}
+    </h1>
+    <h1 class="pseudo">
+      {{ Meta.getHeader.value }}
     </h1>
   </header>
 </template>
@@ -31,5 +34,21 @@ let animatedText = ref("");
 h1 {
   font-size: 6.2rem;
   text-align: center;
+
+  &.pseudo {
+    opacity: 0;
+  }
+
+  &.real {
+    position: absolute;
+  }
+
+  @media screen and (max-width: 1200px) {
+    font-size: 7.2rem;
+  }
+
+  @media screen and (max-width: 576px) {
+    font-size: 5.2rem;
+  }
 }
 </style>
