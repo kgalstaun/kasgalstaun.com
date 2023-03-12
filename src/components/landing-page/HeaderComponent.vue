@@ -43,11 +43,11 @@ h1 {
     position: absolute;
   }
 
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: $screen-size-xl) {
     font-size: 7.2rem;
   }
 
-  @media screen and (max-width: 576px) {
+  @media screen and (max-width: $screen-size-sm) {
     font-size: 5.2rem;
   }
 }
