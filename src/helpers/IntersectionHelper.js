@@ -1,11 +1,15 @@
 const options = { root: null, rootMargin: "0px", threshold: 0.1 };
 
 const IntersectionHelper = {
-  createObserver(elementRef, inViewport) {
+  createObserver(elementRef, inViewport, index) {
     return new IntersectionObserver((entries, observer) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          inViewport.value = true;
+          if (index != null && Number.isInteger(index)) {
+            inViewport[index] = true;
+          } else {
+            inViewport.value = true;
+          }
           observer.unobserve(elementRef);
         }
       });

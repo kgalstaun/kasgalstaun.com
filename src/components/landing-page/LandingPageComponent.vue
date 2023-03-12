@@ -1,17 +1,26 @@
 <template>
-  <div class="h-screen p-lg flex justify-center items-end">
-    <div class="header-wrapper">
-      <HeaderComponent />
+  <Transition>
+    <div v-if="mounted" class="h-screen p-lg flex justify-center items-end">
+      <div class="header-wrapper">
+        <HeaderComponent />
+      </div>
+      <ArrowComponent v-if="arrowConfig" :config="arrowConfig" />
     </div>
-    <ArrowComponent v-if="arrowConfig" :config="arrowConfig" />
-  </div>
+  </Transition>
 </template>
 
 <script setup>
+import { ref, onMounted } from "vue";
 import HeaderComponent from "@/components/landing-page/HeaderComponent";
 import ArrowComponent from "@/components/generic/ArrowComponent";
 import ArrowEnums from "@/enums/ArrowEnums";
 import ElementEnums from "@/enums/ElementEnums";
+
+const mounted = ref(false);
+
+onMounted(() => {
+  mounted.value = true;
+});
 
 const arrowConfig = {
   elementRef: { section: ElementEnums.CONTENT, value: 0 },

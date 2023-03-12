@@ -6,30 +6,34 @@
       :key="index"
       ref="contentRefs"
     >
-      <div
-        class="content-introduction-wrapper text-center px-xl pt-md"
-        v-html="content.text.html"
-      ></div>
-      <PanelWrapperComponent :content="content"></PanelWrapperComponent>
-      <ArrowComponent
-        v-if="arrowConfig && index < Content.length"
-        :config="{
-          ...arrowConfig,
-          elementRef: setElementRef(index, Content),
-        }"
-      />
+      <TransitionGroup>
+        <template v-if="viewportRefs[index]">
+          <div
+            class="content-introduction-wrapper text-center px-xl pt-md"
+            v-html="content.text.html"
+          ></div>
+          <PanelWrapperComponent :content="content"></PanelWrapperComponent>
+          <ArrowComponent
+            v-if="arrowConfig && index < Content.length"
+            :config="{
+              ...arrowConfig,
+              elementRef: setElementRef(index, Content),
+            }"
+          />
+        </template>
+      </TransitionGroup>
     </div>
   </div>
   <ErrorComponent v-if="error"></ErrorComponent>
 </template>
 
 <script setup>
-/* eslint-disable */ 
 import { ref, watch, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import PanelWrapperComponent from "@/components/panel-page/PanelWrapperComponent";
 import ArrowComponent from "@/components/generic/ArrowComponent";
 import ErrorComponent from "@/components/generic/ErrorComponent";
+import IntersectionHelper from "@/helpers/IntersectionHelper";
 import Content from "@/data/Content";
 import QueryService from "@/service/QueryService";
 import ContentQuery from "@/queries/ContentQuery";
@@ -42,6 +46,7 @@ const router = useRouter();
 let error = ref(false);
 const main = ref(null);
 let contentRefs = ref([]);
+let viewportRefs = ref([]);
 
 const arrowConfig = {
   elementRef: { section: ElementEnums.CONTENT },
@@ -60,7 +65,24 @@ watch(
     if (!elementRef) return;
     scrollToElement(elementRef);
   },
-  { deep: true,}
+  { deep: true }
+);
+
+const unwatch = watch(
+  contentRefs,
+  () => {
+    if (!contentRefs.value || viewportRefs.value.length) return;
+
+    contentRefs.value.forEach((ref, index) => {
+      viewportRefs.value.push(false);
+      IntersectionHelper.createObserver(ref, viewportRefs.value, index).observe(
+        ref
+      );
+    });
+
+    unwatch();
+  },
+  { deep: true }
 );
 
 async function fetchData() {
@@ -68,6 +90,7 @@ async function fetchData() {
     .then((response) => {
       if (response.contentArray.length > 0) {
         Content.value = response.contentArray;
+
         if (error.value) {
           error.value = false;
         }
