@@ -6,7 +6,7 @@ const Typewriter = {
     let textArray = text.replace(/ /g, " ").toLowerCase().split("");
 
     for (const character of textArray) {
-      await TimeOutHelper.createCustomTimeout(speed);
+      await TimeOutHelper.startTimeout(speed);
       if (index >= 0) {
         animatedText.value[index] = animatedText.value[index] + character;
       } else {

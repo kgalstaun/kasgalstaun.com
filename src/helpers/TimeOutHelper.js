@@ -1,5 +1,5 @@
 const TimeOutHelper = {
-  async createCustomTimeout(milliseconds) {
+  async startTimeout(milliseconds) {
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve();

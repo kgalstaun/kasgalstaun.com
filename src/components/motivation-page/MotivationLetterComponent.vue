@@ -37,7 +37,7 @@ onMounted(() => {
 
 async function writeLetter() {
   for (let [index, paragraph] of Motivation.value.letter.entries()) {
-    await TimeOutHelper.createCustomTimeout(222);
+    await TimeOutHelper.startTimeout(222);
     await Typewriter.startAnimation(
       motivationLetterAnimation,
       paragraph,
