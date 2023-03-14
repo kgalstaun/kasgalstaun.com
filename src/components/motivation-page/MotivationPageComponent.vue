@@ -5,6 +5,8 @@
         v-if="inViewport && loaded && Motivation"
         class="flex flex-col lg:flex-row justify-center items-center lg:items-start"
       >
+        <h1 class="text-center lg:hidden pb-xl mb-sm">Cover letter</h1>
+
         <MotivationLetterComponent ref="motivation-letter" />
         <MotivationSidebarComponent class="lg:ml-xl max-lg:mt-lg" />
       </div>
