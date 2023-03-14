@@ -3,10 +3,10 @@
     <Transition>
       <div
         v-if="inViewport && loaded && Motivation"
-        class="flex flex-row justify-center items-start"
+        class="flex flex-col lg:flex-row justify-center items-center lg:items-start"
       >
         <MotivationLetterComponent ref="motivation-letter" />
-        <MotivationSidebarComponent class="ml-xl" />
+        <MotivationSidebarComponent class="lg:ml-xl max-lg:mt-lg" />
       </div>
     </Transition>
   </div>

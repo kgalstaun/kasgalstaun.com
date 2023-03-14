@@ -1,6 +1,6 @@
 <template>
   <div class="motivation-letter">
-    <div class="real p-lg">
+    <div class="real p-lg flex-col justify-center">
       <div v-for="(paragraph, index) in motivationLetterAnimation" :key="index">
         <p>{{ paragraph }}</p>
         <template v-if="isNotTheLastParagraph(index, Motivation.letter)">
@@ -56,7 +56,15 @@ function isNotTheLastParagraph(index, letter) {
 .motivation-letter {
   background-color: rgba(255, 255, 255, 0.335);
   border-radius: 0.3rem;
-  max-width: 45vw;
+
+  @media screen and (min-width: $screen-size-md) {
+    max-width: 70vw;
+  }
+
+  @media screen and (min-width: $screen-size-lg) {
+    max-width: 45vw;
+  }
+
   position: relative;
 
   p {
