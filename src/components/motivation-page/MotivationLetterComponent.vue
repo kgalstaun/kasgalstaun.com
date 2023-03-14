@@ -74,10 +74,12 @@ function isNotTheLastParagraph(index, letter) {
 
   .pseudo {
     opacity: 0;
+    max-width: 700px;
   }
 
   .real {
     position: absolute;
+    max-width: 700px;
   }
 }
 </style>

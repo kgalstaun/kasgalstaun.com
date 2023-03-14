@@ -16,6 +16,17 @@ html {
     overflow-y: scroll;
     font-size: 62.5%;
 
+    div#app {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        > main {
+            max-width: 1400px;
+        }
+    }
+
     body {
         // gradient background effect by: https://manuel.pinto.dev
         background: linear-gradient(-45deg, #822508, #e41f6a, #0ca3da, #23d5ab);
