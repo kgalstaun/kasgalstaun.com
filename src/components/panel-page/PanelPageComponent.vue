@@ -8,13 +8,16 @@
     >
       <TransitionGroup>
         <template v-if="viewportRefs[index]">
+          <h1 class="content-title text-center lg:hidden py-lg">
+            {{ content.title }}
+          </h1>
           <div
-            class="content-introduction-wrapper text-center px-md pb-md sm:p-xl sm:pt-md sm:pb-xs"
+            class="content-introduction-wrapper text-center hidden lg:block px-md sm:p-xl sm:pt-md sm:pb-xs"
             v-html="content.text.html"
           ></div>
           <PanelWrapperComponent :content="content"></PanelWrapperComponent>
           <ArrowComponent
-            class="hidden sm:block"
+            class="hidden lg:block"
             v-if="arrowConfig && index < Content.length"
             :config="{
               ...arrowConfig,
@@ -140,11 +143,24 @@ function setElementRef(index, contentArray) {
 
 <style lang="scss" scoped>
 .panel-page-wrapper {
-  // hier moet een media query bij
   div:first-child {
     padding-top: 2.6rem;
+
+    h1.content-title {
+      margin-top: -2.4rem;
+    }
   }
 }
+div:not(first-child) {
+  h1.content-title {
+    margin-top: -7.6rem;
+
+    @media screen and (min-width: $screen-size-sm) {
+      margin-top: -14rem;
+    }
+  }
+}
+
 .content-introduction {
   p {
     padding-bottom: 0rem;

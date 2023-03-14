@@ -4,7 +4,7 @@
     <div
       v-for="(panel, index) in panels"
       :key="index"
-      class="max-lg:p-md lg:px-sm"
+      class="max-lg:px-md max-lg:pb-lg lg:px-sm"
     >
       <PanelComponent :panel="panel"></PanelComponent>
     </div>

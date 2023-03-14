@@ -5,8 +5,9 @@
         v-if="inViewport && loaded && Motivation"
         class="flex flex-col lg:flex-row justify-center items-center lg:items-start"
       >
-        <h1 class="text-center lg:hidden pb-xl mb-sm">Cover letter</h1>
-
+        <h1 class="motivation-title text-center lg:hidden p-lg">
+          Cover letter
+        </h1>
         <MotivationLetterComponent ref="motivation-letter" />
         <MotivationSidebarComponent class="lg:ml-xl max-lg:mt-lg" />
       </div>
@@ -64,3 +65,13 @@ async function fetchMotivationData() {
     .catch(() => (error.value = true));
 }
 </script>
+
+<style lang="scss" scoped>
+h1.motivation-title {
+  margin-top: -10.8rem;
+
+  @media screen and (min-width: $screen-size-sm) {
+    margin-top: -14.2rem;
+  }
+}
+</style>
