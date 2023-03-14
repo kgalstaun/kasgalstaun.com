@@ -1,10 +1,10 @@
 @@ -1,22 +0,0 @@
 <template>
-  <div v-if="panels" class="w-full sm:flex justify-center items-center pt-">
+  <div v-if="panels" class="w-full lg:flex justify-center items-center pt-">
     <div
       v-for="(panel, index) in panels"
       :key="index"
-      class="max-sm:p-md sm:px-sm"
+      class="max-lg:p-md lg:px-sm"
     >
       <PanelComponent :panel="panel"></PanelComponent>
     </div>

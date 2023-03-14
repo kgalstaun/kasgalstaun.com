@@ -2,7 +2,17 @@
     > p {
         text-align: left;
         font-size: 1.6rem;
+
+        @media screen and (min-width: $screen-size-lg) {
+            font-size: 1.4rem;
+          }
+
+          @media screen and (min-width: $screen-size-xl) {
+            font-size: 1.6rem;
+          }
       }
+
+    
 
     > ul > li {
         text-align: center;

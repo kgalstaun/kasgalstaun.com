@@ -1,7 +1,7 @@
 <template>
   <div v-if="Content" class="panel-page-wrapper">
     <div
-      class="min-h-screen sm:h-screen p-sm sm:p-lg flex flex-col items-center justify-between"
+      class="min-h-screen p-sm sm:p-lg flex flex-col items-center justify-between"
       v-for="(content, index) in Content"
       :key="index"
       ref="contentRefs"
@@ -140,6 +140,7 @@ function setElementRef(index, contentArray) {
 
 <style lang="scss" scoped>
 .panel-page-wrapper {
+  // hier moet een media query bij
   div:first-child {
     padding-top: 2.6rem;
   }

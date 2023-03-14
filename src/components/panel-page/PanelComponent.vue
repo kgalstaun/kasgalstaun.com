@@ -30,6 +30,11 @@ const props = defineProps({
 .flip-card {
   background-color: transparent;
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
+
+  @media screen and (min-width: $screen-size-sm) {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 /* This container is needed to position the front and back side */
@@ -39,12 +44,16 @@ const props = defineProps({
   width: 100%;
 
   @media screen and (min-width: $screen-size-sm) {
+    width: 50%;
+  }
+
+  @media screen and (min-width: $screen-size-lg) {
     width: 22vw;
   }
 
   height: 65vh;
 
-  @media screen and (min-width: $screen-size-sm) {
+  @media screen and (min-width: $screen-size-lg) {
     height: 60vh;
   }
   text-align: center;
