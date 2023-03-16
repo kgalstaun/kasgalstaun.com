@@ -14,21 +14,21 @@ import PanelPageComponent from "@/components/panel-page/PanelPageComponent";
 import MotivationPageComponent from "./components/motivation-page/MotivationPageComponent";
 import ErrorComponent from "@/components/generic/ErrorComponent";
 import QueryService from "@/service/QueryService";
-import MetaQuery from "@/queries/MetaQuery";
-import Meta from "@/data/Meta";
+import HeaderQuery from "@/queries/HeaderQuery";
+import Header from "@/data/Header";
 
 onMounted(() => {
-  fetchMetaData();
+  fetchHeader();
 });
 
 let loaded = ref(false);
 let error = ref(false);
 
-async function fetchMetaData() {
-  QueryService.fetch(MetaQuery)
+async function fetchHeader() {
+  QueryService.fetch(HeaderQuery, { id: process.env.VUE_APP_DEFAULT_ID })
     .then((data) => {
-      let metaData = data.metas[0];
-      Meta.set(metaData.headerText, metaData.footerText);
+      let header = data.header;
+      Header.set(header.text);
       loaded.value = true;
     })
     .catch(() => (error.value = true));

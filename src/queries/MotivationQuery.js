@@ -4,7 +4,7 @@ const MotivationQuery = gql`
   query getMotivation() {
     motivations(first: 1) {
         letter,
-        infoLinks { html }
+        info { html }
     }
   }
 `;

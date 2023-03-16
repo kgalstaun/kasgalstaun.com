@@ -1,5 +1,5 @@
 <template>
-  <div class="motivation-sidebar" v-html="Motivation.infoLinks.html"></div>
+  <div class="motivation-sidebar" v-html="Motivation.info.html"></div>
 </template>
 
 <script setup>

@@ -4,7 +4,7 @@
       {{ animatedText }}
     </h1>
     <h1 class="pseudo">
-      {{ Meta.getHeader.value }}
+      {{ Header.getText.value }}
     </h1>
   </header>
 </template>
@@ -13,7 +13,7 @@
 import { ref, onMounted } from "vue";
 import Typewriter from "@/helpers/TypewriterHelper";
 import TypewriterEnums from "@/enums/TypewriterEnums";
-import Meta from "@/data/Meta";
+import Header from "@/data/Header";
 
 onMounted(() => {
   startAnimation();
@@ -22,7 +22,7 @@ onMounted(() => {
 async function startAnimation() {
   Typewriter.startAnimation(
     animatedText,
-    Meta.getHeader.value,
+    Header.getText.value,
     TypewriterEnums.SPEED.NORMAL
   );
 }

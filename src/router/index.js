@@ -6,12 +6,7 @@ import MotivationPageComponent from "@/components/motivation-page/MotivationPage
 const routes = [
   {
     path: "/",
-    name: "werk",
-    component: MotivationPageComponent,
-  },
-  {
-    path: "/werk/:id",
-    name: "werkItem",
+    name: "custom/:id",
     component: MotivationPageComponent,
   },
   {
