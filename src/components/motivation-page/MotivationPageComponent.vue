@@ -6,7 +6,7 @@
         class="flex flex-col lg:flex-row justify-center items-center lg:items-start"
       >
         <h1 class="motivation-title text-center lg:hidden p-lg">
-          Cover letter
+          {{ Motivation.title }}
         </h1>
         <MotivationLetterComponent ref="motivation-letter" />
         <MotivationSidebarComponent class="lg:ml-xl max-lg:mt-lg" />

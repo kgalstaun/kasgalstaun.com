@@ -160,10 +160,4 @@ div:not(first-child) {
     }
   }
 }
-
-.panel-page-introduction-wrapper {
-  p {
-    padding-bottom: 0rem;
-  }
-}
 </style>

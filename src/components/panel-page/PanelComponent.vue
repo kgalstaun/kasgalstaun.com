@@ -26,6 +26,7 @@ const props = defineProps({
 </script>
 
 <style scoped lang="scss">
+// Flip card effect by W3Schools: https://www.w3schools.com/howto/howto_css_flip_card.asp
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card {
   background-color: transparent;
