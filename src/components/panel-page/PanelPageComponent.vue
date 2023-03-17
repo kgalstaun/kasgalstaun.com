@@ -1,27 +1,27 @@
 <template>
-  <div v-if="Content" class="panel-page-wrapper">
+  <div v-if="PanelPages" class="panel-page-wrapper">
     <div
       class="min-h-screen p-sm sm:p-lg flex flex-col items-center justify-between"
-      v-for="(content, index) in Content"
+      v-for="(page, index) in PanelPages"
       :key="index"
-      ref="contentRefs"
+      ref="panelPageRefs"
     >
       <TransitionGroup>
         <template v-if="viewportRefs[index]">
           <h1 class="content-title text-center lg:hidden py-lg">
-            {{ content.title }}
+            {{ page.title }}
           </h1>
           <div
             class="content-introduction-wrapper text-center hidden lg:block px-md sm:p-xl sm:pt-md sm:pb-xs"
-            v-html="content.text.html"
+            v-html="page.text.html"
           ></div>
-          <PanelWrapperComponent :content="content"></PanelWrapperComponent>
+          <PanelWrapperComponent :page="page"></PanelWrapperComponent>
           <ArrowComponent
             class="hidden lg:block"
-            v-if="arrowConfig && index < Content.length"
+            v-if="arrowConfig && index < PanelPages.length"
             :config="{
               ...arrowConfig,
-              elementRef: setElementRef(index, Content),
+              elementRef: setElementRef(index, PanelPages),
             }"
           />
         </template>
@@ -38,9 +38,9 @@ import PanelWrapperComponent from "@/components/panel-page/PanelWrapperComponent
 import ArrowComponent from "@/components/generic/ArrowComponent";
 import ErrorComponent from "@/components/generic/ErrorComponent";
 import IntersectionHelper from "@/helpers/IntersectionHelper";
-import Content from "@/data/Content";
+import PanelPages from "@/data/PanelPages";
 import QueryService from "@/service/QueryService";
-import ContentQuery from "@/queries/ContentQuery";
+import PanelPageQuery from "@/queries/PanelPageQuery";
 import ScrollEvent from "@/events/ScrollEvent";
 import ScrollHelper from "@/helpers/ScrollHelper";
 import ElementEnums from "@/enums/ElementEnums";
@@ -49,7 +49,7 @@ import ArrowEnums from "@/enums/ArrowEnums";
 const router = useRouter();
 let error = ref(false);
 const main = ref(null);
-let contentRefs = ref([]);
+let panelPageRefs = ref([]);
 let viewportRefs = ref([]);
 
 const arrowConfig = {
@@ -73,11 +73,11 @@ watch(
 );
 
 const unwatch = watch(
-  contentRefs,
+  panelPageRefs,
   () => {
-    if (!contentRefs.value || viewportRefs.value.length) return;
+    if (!panelPageRefs.value || viewportRefs.value.length) return;
 
-    contentRefs.value.forEach((ref, index) => {
+    panelPageRefs.value.forEach((ref, index) => {
       viewportRefs.value.push(false);
       IntersectionHelper.createObserver(ref, viewportRefs.value, index).observe(
         ref
@@ -90,10 +90,10 @@ const unwatch = watch(
 );
 
 async function fetchData() {
-  QueryService.fetch(ContentQuery)
+  QueryService.fetch(PanelPageQuery)
     .then((response) => {
-      if (response.contentArray.length > 0) {
-        Content.value = response.contentArray;
+      if (response.panelPages.length > 0) {
+        PanelPages.value = response.panelPages;
 
         if (error.value) {
           error.value = false;
@@ -119,7 +119,7 @@ function overrideAnchorTags(elements) {
 
 function scrollToElement(elementRef) {
   if (elementRef.section === ElementEnums.CONTENT) {
-    ScrollHelper.scrollToElement(contentRefs.value[elementRef.value]);
+    ScrollHelper.scrollToElement(panelPageRefs.value[elementRef.value]);
   } else {
     if (elementRef.section === ElementEnums.MAIN) {
       ScrollHelper.scrollToElement(main.value);

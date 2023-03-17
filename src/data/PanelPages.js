@@ -2,13 +2,13 @@ import { ref, computed } from "vue";
 
 const state = ref(null);
 
-const Content = computed({
+const PanelPages = computed({
   get() {
     return state.value;
   },
-  set(content) {
-    state.value = content;
+  set(panelPages) {
+    state.value = panelPages;
   },
 });
 
-export default Content;
+export default PanelPages;

@@ -16,10 +16,8 @@ import PanelComponent from "@/components/panel-page/PanelComponent";
 import { defineProps, computed } from "vue";
 
 const props = defineProps({
-  content: Object,
+  page: Object,
 });
 
-let panels = computed(() =>
-  props.content.panels ? props.content.panels : null
-);
+let panels = computed(() => (props.page.panels ? props.page.panels : null));
 </script>

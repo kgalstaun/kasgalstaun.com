@@ -1,15 +1,14 @@
 import { gql } from "graphql-request";
 
-const ContentQuery = gql`
+const PanelsQuery = gql`
   query getContent {
-    contentArray {
+    panelPages {
       title
       text {
         html
       }
       panels {
         title
-        location
         role
         period
         text {
@@ -20,4 +19,4 @@ const ContentQuery = gql`
   }
 `;
 
-export default ContentQuery;
+export default PanelsQuery;
