@@ -1,13 +1,16 @@
 import { createRouter, createWebHistory } from "vue-router";
-import MotivationPageComponent from "@/components/motivation-page/MotivationPageComponent";
-
-// NOT IN USE ATM, HERE FOR FUTURE REFERENCE
+import MainComponent from "@/components/MainComponent";
 
 const routes = [
   {
+    path: "/personal/:id",
+    name: "personal",
+    component: MainComponent,
+  },
+  {
     path: "/",
-    name: "custom/:id",
-    component: MotivationPageComponent,
+    name: "default",
+    component: MainComponent,
   },
   {
     path: "/:pathMatch(.*)*",
