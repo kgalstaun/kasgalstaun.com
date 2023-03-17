@@ -19,13 +19,13 @@ import HeaderQuery from "@/queries/HeaderQuery";
 import Header from "@/data/Header";
 import RouteEnums from "@/enums/RouteEnums";
 
+const route = useRoute();
+let loaded = ref(false);
+let error = ref(false);
+
 onMounted(() => {
   fetchPersonalOrDefaultHeader();
 });
-
-let loaded = ref(false);
-let error = ref(false);
-const route = useRoute();
 
 function fetchPersonalOrDefaultHeader() {
   if (RouteEnums.PERSONAL === route.name && route.params.id) {

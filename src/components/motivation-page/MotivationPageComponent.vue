@@ -17,6 +17,7 @@
 
 <script setup>
 import { ref, onMounted, watch } from "vue";
+import { useRoute } from "vue-router";
 import MotivationSidebarComponent from "./MotivationSidebarComponent";
 import MotivationLetterComponent from "./MotivationLetterComponent";
 import IntersectionHelper from "@/helpers/IntersectionHelper";
@@ -26,14 +27,16 @@ import Motivation from "@/data/Motivation";
 import ScrollEvent from "@/events/ScrollEvent";
 import ScrollHelper from "@/helpers/ScrollHelper";
 import ElementEnums from "@/enums/ElementEnums";
+import RouteEnums from "@/enums/RouteEnums";
 
+const route = useRoute();
 const motivation = ref(null);
 const inViewport = ref(false);
 let loaded = ref(false);
 let error = ref(false);
 
 onMounted(() => {
-  fetchMotivationData();
+  fetchPersonalOrDefaultMotivation();
   IntersectionHelper.createObserver(motivation.value, inViewport).observe(
     motivation.value
   );
@@ -49,15 +52,27 @@ watch(
   { deep: true }
 );
 
+function fetchPersonalOrDefaultMotivation() {
+  if (RouteEnums.PERSONAL === route.name && route.params.id) {
+    fetchMotivation(route.params.id);
+  } else {
+    fetchMotivation(process.env.VUE_APP_DEFAULT_ID);
+  }
+}
+
 function scrollToElement(elementRef) {
   if (elementRef.section === ElementEnums.MOTIVATION) {
     ScrollHelper.scrollToElement(motivation.value);
   }
 }
 
-async function fetchMotivationData() {
-  QueryService.fetch(MotivationQuery)
+async function fetchMotivation(id) {
+  QueryService.fetch(MotivationQuery, { id: id })
     .then((data) => {
+      if (data.header === null && RouteEnums.PERSONAL === route.name) {
+        fetchMotivation(process.env.VUE_APP_DEFAULT_ID);
+        return;
+      }
       let motivationData = data.motivations[0];
       Motivation.value = motivationData;
       loaded.value = true;
