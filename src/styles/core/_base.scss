@@ -4,7 +4,7 @@
     margin: 0;
     font-family: "Perfect DOS VGA 437 Win", arial;
     -webkit-font-smoothing: antialiased;
-    color: white;
+    color: $color-white;
 
     a {
         color: inherit;
@@ -24,7 +24,7 @@ html {
     }
 
     body {
-        // gradient background effect by: https://manuel.pinto.dev
+        // Gradient background effect by Manuel Pinto: https://manuel.pinto.dev
         background: linear-gradient(-45deg, #822508, #e41f6a, #0ca3da, #23d5ab);
         background-size: 1200% 3000%;
         animation: gradient 8s ease infinite;
@@ -53,13 +53,5 @@ li {
     list-style: none;
 }
 
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity 0.2s ease;
-}
 
-.fade-enter-from,
-.fade-leave-to {
-    opacity: 0;
-}
 
