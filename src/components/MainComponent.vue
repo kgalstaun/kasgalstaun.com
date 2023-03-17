@@ -52,3 +52,10 @@ async function fetchHeader(id) {
     });
 }
 </script>
+
+<style lang="scss" scoped>
+main {
+  max-width: 1400px;
+  width: 100%;
+}
+</style>

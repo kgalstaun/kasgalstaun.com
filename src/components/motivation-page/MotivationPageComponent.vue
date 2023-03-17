@@ -1,5 +1,5 @@
 <template>
-  <div ref="motivation" class="min-h-screen p-lg">
+  <div ref="motivation" class="min-h-screen p-sm md:p-md lg:p-lg">
     <Transition>
       <div
         v-if="inViewport && loaded && Motivation"

@@ -69,7 +69,7 @@ function isNotTheLastParagraph(index, letter) {
 
   p {
     padding: 0;
-    font-size: 1.7rem;
+    font-size: 1.6rem;
   }
 
   .pseudo {

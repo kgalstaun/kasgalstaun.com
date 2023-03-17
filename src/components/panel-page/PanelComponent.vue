@@ -44,11 +44,11 @@ const props = defineProps({
   width: 100%;
 
   @media screen and (min-width: $screen-size-sm) {
-    width: 50%;
+    width: 70%;
   }
 
   @media screen and (min-width: $screen-size-lg) {
-    width: 22vw;
+    width: 25vw;
   }
 
   height: 65vh;
