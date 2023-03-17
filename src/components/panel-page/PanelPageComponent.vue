@@ -8,11 +8,11 @@
     >
       <TransitionGroup>
         <template v-if="viewportRefs[index]">
-          <h1 class="content-title text-center lg:hidden py-lg">
+          <h1 class="panel-page-title text-center lg:hidden py-lg">
             {{ page.title }}
           </h1>
           <div
-            class="content-introduction-wrapper text-center hidden lg:block px-md sm:p-xl sm:pt-md sm:pb-xs"
+            class="panel-page-introduction-wrapper text-center hidden lg:block px-md sm:p-xl sm:pt-md sm:pb-xs"
             v-html="page.text.html"
           ></div>
           <PanelWrapperComponent :page="page"></PanelWrapperComponent>
@@ -101,7 +101,7 @@ async function fetchData() {
       } else error.value = true;
     })
     .finally(() => {
-      overrideAnchorTags("contentWrapper");
+      overrideAnchorTags("panelPageWrapper");
     })
     .catch(() => (error.value = true));
 }
@@ -127,13 +127,13 @@ function scrollToElement(elementRef) {
   }
 }
 
-function setElementRef(index, contentArray) {
-  if (index + 1 < contentArray.length) {
+function setElementRef(index, panelPagesArray) {
+  if (index + 1 < panelPagesArray.length) {
     return {
       section: ElementEnums.CONTENT,
       value: index + 1,
     };
-  } else if (index + 1 === contentArray.length) {
+  } else if (index + 1 === panelPagesArray.length) {
     return {
       section: ElementEnums.MOTIVATION,
     };
@@ -146,13 +146,13 @@ function setElementRef(index, contentArray) {
   div:first-child {
     padding-top: 2.6rem;
 
-    h1.content-title {
+    h1.panel-page-title {
       margin-top: -2.4rem;
     }
   }
 }
 div:not(first-child) {
-  h1.content-title {
+  h1.panel-page-title {
     margin-top: -7.6rem;
 
     @media screen and (min-width: $screen-size-sm) {
@@ -161,7 +161,7 @@ div:not(first-child) {
   }
 }
 
-.content-introduction {
+.panel-page-introduction-wrapper {
   p {
     padding-bottom: 0rem;
   }
