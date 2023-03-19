@@ -19,7 +19,6 @@ import { ref, onMounted, nextTick } from "vue";
 import HeaderComponent from "@/components/landing-page/HeaderComponent";
 import ArrowComponent from "@/components/generic/ArrowComponent";
 import ArrowEnums from "@/enums/ArrowEnums";
-import ElementEnums from "@/enums/ElementEnums";
 
 const headerWrapper = ref(null);
 const mounted = ref(false);
@@ -34,7 +33,6 @@ onMounted(() => {
 });
 
 const arrowConfig = {
-  elementRef: { section: ElementEnums.CONTENT, value: 0 },
   direction: ArrowEnums.DIRECTION.DOWN,
   size: ArrowEnums.SIZE.LG,
 };

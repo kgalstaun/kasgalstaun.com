@@ -2,7 +2,7 @@
   <div
     :style="{ opacity: arrowOpacity }"
     :class="['arrow', config?.direction, config?.size]"
-    @click="arrowClick(config?.elementRef)"
+    @click="scrollDownByViewportHeight()"
   >
     {{ arrow }}
   </div>
@@ -10,7 +10,6 @@
 
 <script setup>
 import { defineProps, onMounted, onUnmounted, ref } from "vue";
-import ScrollEvent from "@/events/ScrollEvent";
 
 // eslint-disable-next-line no-unused-vars
 const props = defineProps({
@@ -35,12 +34,8 @@ onUnmounted(() => {
   clearInterval(arrowShowAndHideInterval);
 });
 
-function arrowClick(elementRef) {
-  if (!elementRef) {
-    return;
-  } else {
-    ScrollEvent.emit(elementRef);
-  }
+function scrollDownByViewportHeight() {
+  window.scrollBy({ top: window.innerHeight, behavior: "smooth" });
 }
 
 function startBlinkingAnimation() {
