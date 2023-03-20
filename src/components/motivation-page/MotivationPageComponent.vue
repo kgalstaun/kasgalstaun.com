@@ -5,7 +5,7 @@
         v-if="inViewport && loaded && Motivation"
         class="flex flex-col lg:flex-row justify-center items-center lg:items-start"
       >
-        <h1 class="motivation-title text-center lg:hidden p-lg">
+        <h1 class="motivation-title text-center max-lg:p-xl lg:pr-xl">
           {{ Motivation.title }}
         </h1>
         <MotivationLetterComponent ref="motivation-letter" />
