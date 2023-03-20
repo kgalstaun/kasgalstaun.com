@@ -8,13 +8,24 @@
     >
       <TransitionGroup>
         <template v-if="viewportRefs[index]">
-          <div
-            class="panel-page-introduction-wrapper text-center hidden lg:block px-md sm:p-xl sm:pt-md sm:pb-xs"
-            v-html="page.text.html"
-          ></div>
+          <template class="block lg:hidden">
+            <div
+              class="panel-page-introduction-wrapper h-screen flex flex-col items-center justify-center lg:block text-center"
+            >
+              <div class="m-auto" v-html="page.text.html"></div>
+              <ArrowComponent v-if="arrowConfig" :config="arrowConfig" />
+            </div>
+          </template>
+
+          <template class="hidden lg:block">
+            <div class="panel-page-introduction-wrapper text-center">
+              <div v-html="page.text.html"></div>
+            </div>
+          </template>
+
           <PanelWrapperComponent :page="page"></PanelWrapperComponent>
+
           <ArrowComponent
-            class="hidden lg:block"
             v-if="arrowConfig && index < PanelPages.length"
             :config="{
               ...arrowConfig,
@@ -137,11 +148,3 @@ function setElementRef(index, panelPagesArray) {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.panel-page-wrapper {
-  div:first-child {
-    padding-top: 2.6rem;
-  }
-}
-</style>

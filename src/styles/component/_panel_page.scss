@@ -29,7 +29,28 @@
 }
 
 .panel-page-introduction-wrapper {
-    > p {
+    margin-top: -4.8rem;
+    padding: 4.8rem;
+
+    p {
+        // compensate for the size of the arrow (45px height) on the bottom of the container
+        transform: translateY(22.5px);
         padding-bottom: 0rem;
     }
+
+    @media screen and (min-width: $screen-size-lg) {
+        margin-top: 0 rem;
+        p {
+            transform: translateY(0);
+        }
+      }
+}
+
+@media screen and (min-width: $screen-size-lg) {
+    .panel-page-introduction-wrapper {
+        margin-top: 0rem;
+            p {
+                transform: translateY(0%);
+            }
+          }
 }
