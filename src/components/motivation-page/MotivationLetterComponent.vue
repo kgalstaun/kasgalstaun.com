@@ -1,6 +1,6 @@
 <template>
   <div class="motivation-letter">
-    <div class="real p-lg flex-col justify-center">
+    <div class="real p-md lg:p-lg flex-col justify-center">
       <div v-for="(paragraph, index) in motivationLetterAnimation" :key="index">
         <p>{{ paragraph }}</p>
         <template v-if="isNotTheLastParagraph(index, Motivation.letter)">
@@ -8,7 +8,7 @@
         </template>
       </div>
     </div>
-    <div class="pseudo p-lg">
+    <div class="pseudo p-md lg:p-lg">
       <div v-for="(paragraph, index) in Motivation.letter" :key="index">
         <p>{{ paragraph }}</p>
         <template v-if="isNotTheLastParagraph(index, Motivation.letter)">

@@ -1,31 +1,21 @@
 <template>
   <div v-if="PanelPages" class="panel-page-wrapper">
     <div
-      class="min-h-screen p-sm sm:p-lg flex flex-col items-center justify-between"
+      class="min-h-screen p-lg flex flex-col items-center justify-between"
       v-for="(page, index) in PanelPages"
       :key="index"
       ref="panelPageRefs"
     >
       <TransitionGroup>
         <template v-if="viewportRefs[index]">
-          <template class="block lg:hidden">
-            <div
-              class="panel-page-introduction-wrapper h-screen flex flex-col items-center justify-center lg:block text-center"
-            >
-              <div class="m-auto" v-html="page.text.html"></div>
-              <ArrowComponent v-if="arrowConfig" :config="arrowConfig" />
-            </div>
-          </template>
-
-          <template class="hidden lg:block">
-            <div class="panel-page-introduction-wrapper text-center">
-              <div v-html="page.text.html"></div>
-            </div>
-          </template>
+          <div class="panel-introduction-wrapper text-center">
+            <div v-html="page.text.html"></div>
+          </div>
 
           <PanelWrapperComponent :page="page"></PanelWrapperComponent>
 
           <ArrowComponent
+            class="hidden lg:block"
             v-if="arrowConfig && index < PanelPages.length"
             :config="{
               ...arrowConfig,
@@ -61,7 +51,7 @@ let panelPageRefs = ref([]);
 let viewportRefs = ref([]);
 
 const arrowConfig = {
-  elementRef: { section: ElementEnums.CONTENT },
+  elementRef: { section: ElementEnums.PANEL_PAGE_WRAPPER },
   direction: ArrowEnums.DIRECTION.DOWN,
   size: ArrowEnums.SIZE.LG,
 };
@@ -126,7 +116,7 @@ function overrideAnchorTags(elements) {
 }
 
 function scrollToElement(elementRef) {
-  if (elementRef.section === ElementEnums.CONTENT) {
+  if (elementRef.section === ElementEnums.PANEL_PAGE_WRAPPER) {
     ScrollHelper.scrollToElement(panelPageRefs.value[elementRef.value]);
   } else {
     if (elementRef.section === ElementEnums.MAIN) {
@@ -138,7 +128,7 @@ function scrollToElement(elementRef) {
 function setElementRef(index, panelPagesArray) {
   if (index + 1 < panelPagesArray.length) {
     return {
-      section: ElementEnums.CONTENT,
+      section: ElementEnums.PANEL_PAGE_WRAPPER,
       value: index + 1,
     };
   } else if (index + 1 === panelPagesArray.length) {

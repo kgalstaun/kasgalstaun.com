@@ -25,6 +25,12 @@ const headerWrapper = ref(null);
 const mounted = ref(false);
 const dynamicHeight = ref("");
 
+const resizeObserver = new ResizeObserver(() => {
+  updateLandingPageHeight();
+});
+
+resizeObserver.observe(document.body);
+
 onMounted(() => {
   mounted.value = true;
   nextTick(() => {
@@ -34,7 +40,7 @@ onMounted(() => {
 });
 
 const arrowConfig = {
-  elementRef: { section: ElementEnums.CONTENT, value: 0 },
+  elementRef: { section: ElementEnums.PANEL_PAGE_WRAPPER, value: 0 },
   direction: ArrowEnums.DIRECTION.DOWN,
   size: ArrowEnums.SIZE.LG,
 };

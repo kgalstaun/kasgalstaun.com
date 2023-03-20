@@ -1,6 +1,6 @@
 const ElementEnums = {
   MAIN: "main",
-  CONTENT: "content",
+  PANEL_PAGE_WRAPPER: "panelPageWrapper",
   MOTIVATION: "motivation",
 };
 

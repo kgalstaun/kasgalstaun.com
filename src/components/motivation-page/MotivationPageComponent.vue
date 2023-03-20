@@ -1,5 +1,5 @@
 <template>
-  <div ref="motivation" class="min-h-screen p-sm md:p-md lg:p-lg">
+  <div ref="motivation" class="min-h-screen p-lg">
     <Transition>
       <div
         v-if="inViewport && loaded && Motivation"
@@ -83,10 +83,8 @@ async function fetchMotivation(id) {
 
 <style lang="scss" scoped>
 h1.motivation-title {
-  margin-top: -10.8rem;
-
-  @media screen and (min-width: $screen-size-sm) {
-    margin-top: -14.2rem;
+  @media screen and (max-width: $screen-size-lg) {
+    margin-top: -13.8rem;
   }
 }
 </style>
