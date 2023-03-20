@@ -3,18 +3,19 @@
     @media screen and (max-width: $screen-size-lg) {
         > div {
             .panel-introduction-wrapper {
-                padding-bottom: 4.2rem;
+                padding-bottom: 2.4rem;
+
+                p {
+                    padding-bottom: 0px;
+                }
             }
         }
     
         > div:not(:first-child) {
             .panel-introduction-wrapper {
-                margin-top: -4.2rem;
-                margin-bottom: 4.2rem;
-    
-                p {
-                    padding-bottom: 0px;
-                }
+                margin-top: -2.4rem;
+                margin-bottom: 2.4rem;
+
             }
         }
       }
@@ -32,11 +33,12 @@
             text-align: left;
             font-size: 1.6rem;
     
-            @media screen and (min-width: $screen-size-lg) {
-                font-size: 1.4rem;
+              @media screen and (min-width: $screen-size-md) {
+                font-size: 1.8rem;
               }
-    
-              @media screen and (min-width: $screen-size-xl) {
+
+
+              @media screen and (min-width: $screen-size-lg) {
                 font-size: 1.6rem;
               }
           }

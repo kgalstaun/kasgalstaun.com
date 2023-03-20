@@ -1,7 +1,7 @@
 <template>
   <div v-if="PanelPages" class="panel-page-wrapper">
     <div
-      class="min-h-screen p-lg flex flex-col items-center justify-between"
+      class="min-h-screen p-md lg:p-lg flex flex-col items-center justify-between"
       v-for="(page, index) in PanelPages"
       :key="index"
       ref="panelPageRefs"

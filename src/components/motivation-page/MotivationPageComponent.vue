@@ -1,15 +1,15 @@
 <template>
-  <div ref="motivation" class="min-h-screen p-lg">
+  <div ref="motivation" class="min-h-screen p-md lg:p-lg">
     <Transition>
       <div
         v-if="inViewport && loaded && Motivation"
         class="flex flex-col lg:flex-row justify-center items-center lg:items-start"
       >
-        <h1 class="motivation-title text-center max-lg:p-xl lg:pr-xl">
+        <h1 class="motivation-title text-center max-lg:p-lg lg:pr-xl">
           {{ Motivation.title }}
         </h1>
         <MotivationLetterComponent ref="motivation-letter" />
-        <MotivationSidebarComponent class="lg:ml-xl max-lg:mt-lg" />
+        <MotivationSidebarComponent class="lg:ml-xl max-lg:mt-md" />
       </div>
     </Transition>
   </div>
@@ -84,7 +84,7 @@ async function fetchMotivation(id) {
 <style lang="scss" scoped>
 h1.motivation-title {
   @media screen and (max-width: $screen-size-lg) {
-    margin-top: -13.8rem;
+    margin-top: -7.1rem;
   }
 }
 </style>

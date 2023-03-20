@@ -4,7 +4,7 @@
       v-if="mounted"
       ref="headerWrapper"
       :style="{ height: dynamicHeight }"
-      class="h-screen p-lg flex justify-center items-end"
+      class="h-screen p-md lg:p-lg flex justify-center items-end"
     >
       <div class="header-component-wrapper">
         <HeaderComponent />
