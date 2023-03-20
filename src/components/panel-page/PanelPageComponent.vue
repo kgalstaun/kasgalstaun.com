@@ -8,9 +8,6 @@
     >
       <TransitionGroup>
         <template v-if="viewportRefs[index]">
-          <h1 class="panel-page-title text-center lg:hidden py-lg">
-            {{ page.title }}
-          </h1>
           <div
             class="panel-page-introduction-wrapper text-center hidden lg:block px-md sm:p-xl sm:pt-md sm:pb-xs"
             v-html="page.text.html"
@@ -145,19 +142,6 @@ function setElementRef(index, panelPagesArray) {
 .panel-page-wrapper {
   div:first-child {
     padding-top: 2.6rem;
-
-    h1.panel-page-title {
-      margin-top: -2.4rem;
-    }
-  }
-}
-div:not(first-child) {
-  h1.panel-page-title {
-    margin-top: -7.6rem;
-
-    @media screen and (min-width: $screen-size-sm) {
-      margin-top: -14rem;
-    }
   }
 }
 </style>
