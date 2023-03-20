@@ -25,12 +25,6 @@ const headerWrapper = ref(null);
 const mounted = ref(false);
 const dynamicHeight = ref("");
 
-const resizeObserver = new ResizeObserver(() => {
-  updateLandingPageHeight();
-});
-
-resizeObserver.observe(document.body);
-
 onMounted(() => {
   mounted.value = true;
   nextTick(() => {
