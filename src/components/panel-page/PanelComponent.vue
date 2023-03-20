@@ -27,7 +27,6 @@ const props = defineProps({
 
 <style scoped lang="scss">
 // Flip card effect by W3Schools: https://www.w3schools.com/howto/howto_css_flip_card.asp
-/* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card {
   background-color: transparent;
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
@@ -45,11 +44,19 @@ const props = defineProps({
   width: 100%;
 
   @media screen and (min-width: $screen-size-sm) {
-    width: 70%;
+    width: 80%;
+  }
+
+  @media screen and (min-width: $screen-size-md) {
+    width: 60%;
   }
 
   @media screen and (min-width: $screen-size-lg) {
-    width: 25vw;
+    width: 28rem;
+  }
+
+  @media screen and (min-width: $screen-size-xl) {
+    width: 35rem;
   }
 
   height: 65vh;

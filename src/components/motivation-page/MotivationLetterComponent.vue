@@ -70,6 +70,18 @@ function isNotTheLastParagraph(index, letter) {
   p {
     padding: 0;
     font-size: 1.6rem;
+
+    @media screen and (min-width: $screen-size-sm) {
+      font-size: 1.8rem;
+    }
+
+    @media screen and (min-width: $screen-size-md) {
+      font-size: 2.4rem;
+    }
+
+    @media screen and (min-width: $screen-size-lg) {
+      font-size: 1.8rem;
+    }
   }
 
   .pseudo {
