@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
 import MotivationSidebarComponent from "./MotivationSidebarComponent";
 import MotivationLetterComponent from "./MotivationLetterComponent";
@@ -24,6 +24,9 @@ import IntersectionHelper from "@/helpers/IntersectionHelper";
 import QueryService from "@/service/QueryService";
 import MotivationQuery from "@/queries/MotivationQuery";
 import Motivation from "@/data/Motivation";
+import ScrollEvent from "@/events/ScrollEvent";
+import ScrollHelper from "@/helpers/ScrollHelper";
+import ElementEnums from "@/enums/ElementEnums";
 import RouteEnums from "@/enums/RouteEnums";
 
 const route = useRoute();
@@ -39,11 +42,27 @@ onMounted(() => {
   );
 });
 
+watch(
+  ScrollEvent.listen,
+  () => {
+    const elementRef = ScrollEvent.listen.value;
+    if (!elementRef) return;
+    scrollToElement(elementRef);
+  },
+  { deep: true }
+);
+
 function fetchPersonalOrDefaultMotivation() {
   if (RouteEnums.PERSONAL === route.name && route.params.id) {
     fetchMotivation(route.params.id);
   } else {
     fetchMotivation(process.env.VUE_APP_DEFAULT_ID);
+  }
+}
+
+function scrollToElement(elementRef) {
+  if (elementRef.section === ElementEnums.MOTIVATION) {
+    ScrollHelper.scrollToElement(motivation.value);
   }
 }
 

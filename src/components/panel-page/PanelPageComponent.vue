@@ -7,16 +7,22 @@
       ref="panelPageRefs"
     >
       <TransitionGroup>
-        <template v-if="page">
+        <template v-if="viewportRefs[index]">
+          <h1 class="panel-page-title text-center lg:hidden py-lg">
+            {{ page.title }}
+          </h1>
           <div
-            class="panel-page-introduction-wrapper h-screen lg:h-full flex flex-row items-center justify-center lg:block text-center px-md sm:p-xl sm:pt-md sm:pb-xs"
+            class="panel-page-introduction-wrapper text-center hidden lg:block px-md sm:p-xl sm:pt-md sm:pb-xs"
             v-html="page.text.html"
           ></div>
           <PanelWrapperComponent :page="page"></PanelWrapperComponent>
           <ArrowComponent
             class="hidden lg:block"
             v-if="arrowConfig && index < PanelPages.length"
-            :config="arrowConfig"
+            :config="{
+              ...arrowConfig,
+              elementRef: setElementRef(index, PanelPages),
+            }"
           />
         </template>
       </TransitionGroup>
@@ -26,20 +32,28 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, watch, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import PanelWrapperComponent from "@/components/panel-page/PanelWrapperComponent";
 import ArrowComponent from "@/components/generic/ArrowComponent";
 import ErrorComponent from "@/components/generic/ErrorComponent";
+import IntersectionHelper from "@/helpers/IntersectionHelper";
 import PanelPages from "@/data/PanelPages";
 import QueryService from "@/service/QueryService";
 import PanelPageQuery from "@/queries/PanelPageQuery";
+import ScrollEvent from "@/events/ScrollEvent";
+import ScrollHelper from "@/helpers/ScrollHelper";
+import ElementEnums from "@/enums/ElementEnums";
 import ArrowEnums from "@/enums/ArrowEnums";
 
 const router = useRouter();
 let error = ref(false);
+const main = ref(null);
+let panelPageRefs = ref([]);
+let viewportRefs = ref([]);
 
 const arrowConfig = {
+  elementRef: { section: ElementEnums.CONTENT },
   direction: ArrowEnums.DIRECTION.DOWN,
   size: ArrowEnums.SIZE.LG,
 };
@@ -47,6 +61,33 @@ const arrowConfig = {
 onMounted(() => {
   fetchData();
 });
+
+watch(
+  ScrollEvent.listen,
+  () => {
+    const elementRef = ScrollEvent.listen.value;
+    if (!elementRef) return;
+    scrollToElement(elementRef);
+  },
+  { deep: true }
+);
+
+const unwatch = watch(
+  panelPageRefs,
+  () => {
+    if (!panelPageRefs.value || viewportRefs.value.length) return;
+
+    panelPageRefs.value.forEach((ref, index) => {
+      viewportRefs.value.push(false);
+      IntersectionHelper.createObserver(ref, viewportRefs.value, index).observe(
+        ref
+      );
+    });
+
+    unwatch();
+  },
+  { deep: true }
+);
 
 async function fetchData() {
   QueryService.fetch(PanelPageQuery)
@@ -75,4 +116,48 @@ function overrideAnchorTags(elements) {
     });
   });
 }
+
+function scrollToElement(elementRef) {
+  if (elementRef.section === ElementEnums.CONTENT) {
+    ScrollHelper.scrollToElement(panelPageRefs.value[elementRef.value]);
+  } else {
+    if (elementRef.section === ElementEnums.MAIN) {
+      ScrollHelper.scrollToElement(main.value);
+    }
+  }
+}
+
+function setElementRef(index, panelPagesArray) {
+  if (index + 1 < panelPagesArray.length) {
+    return {
+      section: ElementEnums.CONTENT,
+      value: index + 1,
+    };
+  } else if (index + 1 === panelPagesArray.length) {
+    return {
+      section: ElementEnums.MOTIVATION,
+    };
+  }
+}
 </script>
+
+<style lang="scss" scoped>
+.panel-page-wrapper {
+  div:first-child {
+    padding-top: 2.6rem;
+
+    h1.panel-page-title {
+      margin-top: -2.4rem;
+    }
+  }
+}
+div:not(first-child) {
+  h1.panel-page-title {
+    margin-top: -7.6rem;
+
+    @media screen and (min-width: $screen-size-sm) {
+      margin-top: -14rem;
+    }
+  }
+}
+</style>
