@@ -8,16 +8,7 @@ h2 {
 }
 
 a {
-    color: blue;
-
-    span,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5 {
-        color: black;
-    }
+    color: $color-goldenrod-yellow !important;
 }
 
 p {
