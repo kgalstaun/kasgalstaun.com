@@ -3,7 +3,7 @@
         font-size: $font-size-sm;
         text-align: center;
 
-        @media screen and (min-width: $screen-size-lg) {
+        @media screen and (min-width: $screen-size-xl) {
           text-align: start;
         }
       }

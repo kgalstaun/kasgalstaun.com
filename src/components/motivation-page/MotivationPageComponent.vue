@@ -3,13 +3,13 @@
     <Transition>
       <div
         v-if="inViewport && loaded && Motivation"
-        class="flex flex-col lg:flex-row justify-center items-center lg:items-start"
+        class="flex flex-col xl:flex-row justify-center items-center xl:items-start"
       >
-        <h1 class="motivation-title text-center max-lg:p-lg lg:pr-xl">
+        <h2 class="motivation-title text-center max-xl:p-lg xl:pr-xl">
           {{ Motivation.title }}
-        </h1>
+        </h2>
         <MotivationLetterComponent ref="motivation-letter" />
-        <MotivationSidebarComponent class="lg:ml-xl max-lg:mt-md" />
+        <MotivationSidebarComponent class="xl:ml-xl max-xl:mt-xl" />
       </div>
     </Transition>
   </div>
@@ -82,8 +82,8 @@ async function fetchMotivation(id) {
 </script>
 
 <style lang="scss" scoped>
-h1.motivation-title {
-  @media screen and (max-width: $screen-size-lg) {
+h2.motivation-title {
+  @media screen and (max-width: $screen-size-xl) {
     margin-top: -7.1rem;
   }
 }

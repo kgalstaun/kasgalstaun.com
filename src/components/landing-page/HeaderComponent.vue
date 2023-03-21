@@ -38,10 +38,6 @@ h1 {
   }
 
   @media screen and (min-width: $screen-size-sm) {
-    font-size: 7.2rem;
-  }
-
-  @media screen and (min-width: $screen-size-xl) {
     font-size: 6.2rem;
   }
 }

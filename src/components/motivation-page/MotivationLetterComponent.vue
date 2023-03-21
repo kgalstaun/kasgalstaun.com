@@ -45,12 +45,13 @@ async function writeLetter() {
   background-color: rgba(255, 255, 255, 0.335);
   border-radius: 0.3rem;
 
-  @media screen and (min-width: $screen-size-md) {
-    max-width: 70vw;
+  @media screen and (min-width: $screen-size-sm) {
+    max-width: 60rem;
   }
 
   @media screen and (min-width: $screen-size-lg) {
-    max-width: 45vw;
+    min-width: 50rem;
+    max-width: 60rem;
   }
 
   position: relative;
