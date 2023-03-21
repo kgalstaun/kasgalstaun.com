@@ -1,11 +1,11 @@
 <template>
   <div class="motivation-letter">
-    <div class="real p-md lg:p-lg flex-col justify-center">
+    <div class="real p-md md:p-lg flex-col justify-center">
       <div v-for="(paragraph, index) in motivationLetterAnimation" :key="index">
         <p>{{ paragraph }}</p>
       </div>
     </div>
-    <div class="pseudo p-md lg:p-lg">
+    <div class="pseudo p-md md:p-lg">
       <div v-for="(paragraph, index) in Motivation.letter" :key="index">
         <p>{{ paragraph }}</p>
       </div>
@@ -60,14 +60,6 @@ async function writeLetter() {
     font-size: $font-size-sm;
 
     @media screen and (min-width: $screen-size-sm) {
-      font-size: $font-size-md;
-    }
-
-    @media screen and (min-width: $screen-size-md) {
-      font-size: 2.4rem;
-    }
-
-    @media screen and (min-width: $screen-size-lg) {
       font-size: $font-size-md;
     }
   }
