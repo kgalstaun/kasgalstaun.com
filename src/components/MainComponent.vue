@@ -4,6 +4,9 @@
     <PanelPageComponent />
     <MotivationPageComponent />
   </main>
+  <div v-if="!loaded" class="loading-animation-wrapper">
+    <LoadingAnimationComponent />
+  </div>
   <ErrorComponent class="p-xl" v-if="error" />
 </template>
 
@@ -13,6 +16,7 @@ import { useRoute } from "vue-router";
 import LandingPageComponent from "@/components/landing-page/LandingPageComponent";
 import PanelPageComponent from "@/components/panel-page/PanelPageComponent";
 import MotivationPageComponent from "@/components/motivation-page/MotivationPageComponent";
+import LoadingAnimationComponent from "@/components/generic/LoadingAnimationComponent";
 import ErrorComponent from "@/components/generic/ErrorComponent";
 import QueryService from "@/service/QueryService";
 import HeaderQuery from "@/queries/HeaderQuery";
@@ -57,5 +61,12 @@ async function fetchHeader(id) {
 main {
   max-width: 1400px;
   width: 100%;
+}
+
+.loading-animation-wraopper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 </style>

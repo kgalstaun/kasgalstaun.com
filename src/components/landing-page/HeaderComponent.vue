@@ -16,16 +16,10 @@ import TypewriterEnums from "@/enums/TypewriterEnums";
 import Header from "@/data/Header";
 
 onMounted(() => {
-  startAnimation();
+  Typewriter.startAnimation(animatedText, Header.getText.value, {
+    speed: TypewriterEnums.SPEED.NORMAL,
+  });
 });
-
-async function startAnimation() {
-  Typewriter.startAnimation(
-    animatedText,
-    Header.getText.value,
-    TypewriterEnums.SPEED.NORMAL
-  );
-}
 
 let animatedText = ref("");
 </script>

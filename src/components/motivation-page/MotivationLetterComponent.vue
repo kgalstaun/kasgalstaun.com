@@ -38,12 +38,10 @@ onMounted(() => {
 async function writeLetter() {
   for (let [index, paragraph] of Motivation.value.letter.entries()) {
     await TimeOutHelper.startTimeout(222);
-    await Typewriter.startAnimation(
-      motivationLetterAnimation,
-      paragraph,
-      TypewriterEnums.SPEED.FAST,
-      index
-    );
+    await Typewriter.startAnimation(motivationLetterAnimation, paragraph, {
+      speed: TypewriterEnums.SPEED.FAST,
+      index: index,
+    });
   }
 }
 
