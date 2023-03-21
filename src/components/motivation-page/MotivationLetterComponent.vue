@@ -3,17 +3,11 @@
     <div class="real p-md lg:p-lg flex-col justify-center">
       <div v-for="(paragraph, index) in motivationLetterAnimation" :key="index">
         <p>{{ paragraph }}</p>
-        <template v-if="isNotTheLastParagraph(index, Motivation.letter)">
-          <br /><br />
-        </template>
       </div>
     </div>
     <div class="pseudo p-md lg:p-lg">
       <div v-for="(paragraph, index) in Motivation.letter" :key="index">
         <p>{{ paragraph }}</p>
-        <template v-if="isNotTheLastParagraph(index, Motivation.letter)">
-          <br /><br />
-        </template>
       </div>
     </div>
   </div>
@@ -44,10 +38,6 @@ async function writeLetter() {
     });
   }
 }
-
-function isNotTheLastParagraph(index, letter) {
-  return index + 1 < letter.length;
-}
 </script>
 
 <style lang="scss" scoped>
@@ -66,11 +56,11 @@ function isNotTheLastParagraph(index, letter) {
   position: relative;
 
   p {
-    padding: 0;
-    font-size: 1.6rem;
+    padding-bottom: 2.6rem;
+    font-size: $font-size-sm;
 
     @media screen and (min-width: $screen-size-sm) {
-      font-size: 1.8rem;
+      font-size: $font-size-md;
     }
 
     @media screen and (min-width: $screen-size-md) {
@@ -78,7 +68,7 @@ function isNotTheLastParagraph(index, letter) {
     }
 
     @media screen and (min-width: $screen-size-lg) {
-      font-size: 1.8rem;
+      font-size: $font-size-md;
     }
   }
 
@@ -90,6 +80,15 @@ function isNotTheLastParagraph(index, letter) {
   .real {
     position: absolute;
     max-width: 700px;
+  }
+
+  .pseudo,
+  .real {
+    div:last-child {
+      p {
+        padding-bottom: 0rem;
+      }
+    }
   }
 }
 </style>

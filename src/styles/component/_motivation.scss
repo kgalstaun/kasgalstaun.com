@@ -1,6 +1,6 @@
 .motivation-sidebar {
     > p {
-        font-size: 1.6rem;
+        font-size: $font-size-sm;
         text-align: center;
 
         @media screen and (min-width: $screen-size-lg) {
