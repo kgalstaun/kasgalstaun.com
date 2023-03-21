@@ -4,7 +4,7 @@
     <PanelPageComponent />
     <MotivationPageComponent />
   </main>
-  <div v-if="!loaded" class="loading-animation-wrapper">
+  <div v-if="!loaded && !error" class="loading-animation-wrapper">
     <LoadingAnimationComponent />
   </div>
   <ErrorComponent class="p-xl" v-if="error" />
