@@ -69,7 +69,7 @@ function scrollToElement(elementRef) {
 async function fetchMotivation(id) {
   QueryService.fetch(MotivationQuery, { id: id })
     .then((data) => {
-      if (data.header === null && RouteEnums.PERSONAL === route.name) {
+      if (!data.motivations?.length && RouteEnums.PERSONAL === route.name) {
         fetchMotivation(process.env.VUE_APP_DEFAULT_ID);
         return;
       }
