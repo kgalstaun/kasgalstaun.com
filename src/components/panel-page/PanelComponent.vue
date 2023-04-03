@@ -87,14 +87,12 @@ const props = defineProps({
 
 /* Style the front side (fallback if image is missing) */
 .flip-card-front {
-  background-color: rgba(255, 255, 255, 0.335);
-  color: black;
+  border: 2px dotted white;
 }
 
 /* Style the back side */
 .flip-card-back {
-  background-color: rgba(255, 255, 255, 0.335);
-  color: black;
+  border: 2px dotted white;
   transform: rotateY(180deg);
 }
 
