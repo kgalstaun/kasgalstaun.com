@@ -16,10 +16,10 @@ import ScrollEvent from "@/events/ScrollEvent";
 const props = defineProps({
   config: Object,
 });
-const arrow = ">";
-const arrowOpacityWeak = "10%";
-const arrowOpacityFull = "40%";
 
+let arrow = ">";
+let arrowOpacityWeak = "10%";
+let arrowOpacityFull = "40%";
 let arrowBlinkSpeed = 550;
 let arrowOpacity = ref(arrowOpacityWeak);
 let arrowShowAndHideInterval;

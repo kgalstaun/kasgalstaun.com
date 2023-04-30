@@ -8,7 +8,7 @@ import Typewriter from "@/helpers/TypewriterHelper";
 import TypewriterEnums from "@/enums/TypewriterEnums";
 
 let dots = "...";
-const animatedText = ref("");
+let animatedText = ref("");
 
 onMounted(() => {
   Typewriter.startAnimation(animatedText, dots, {

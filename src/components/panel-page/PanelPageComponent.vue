@@ -46,11 +46,11 @@ import ArrowEnums from "@/enums/ArrowEnums";
 
 const router = useRouter();
 let error = ref(false);
-const main = ref(null);
+let main = ref(null);
 let panelPageRefs = ref([]);
 let viewportRefs = ref([]);
 
-const arrowConfig = {
+let arrowConfig = {
   elementRef: { section: ElementEnums.PANEL_PAGE_WRAPPER },
   direction: ArrowEnums.DIRECTION.DOWN,
   size: ArrowEnums.SIZE.LG,

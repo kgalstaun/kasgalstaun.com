@@ -30,8 +30,8 @@ import ElementEnums from "@/enums/ElementEnums";
 import RouteEnums from "@/enums/RouteEnums";
 
 const route = useRoute();
-const motivation = ref(null);
-const inViewport = ref(false);
+let motivation = ref(null);
+let inViewport = ref(false);
 let loaded = ref(false);
 let error = ref(false);
 
@@ -45,7 +45,7 @@ onMounted(() => {
 watch(
   ScrollEvent.listen,
   () => {
-    const elementRef = ScrollEvent.listen.value;
+    let elementRef = ScrollEvent.listen.value;
     if (!elementRef) return;
     scrollToElement(elementRef);
   },

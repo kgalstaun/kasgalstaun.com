@@ -21,9 +21,15 @@ import ArrowComponent from "@/components/generic/ArrowComponent";
 import ArrowEnums from "@/enums/ArrowEnums";
 import ElementEnums from "@/enums/ElementEnums";
 
-const headerWrapper = ref(null);
-const mounted = ref(false);
-const dynamicHeight = ref("");
+let headerWrapper = ref(null);
+let mounted = ref(false);
+let dynamicHeight = ref("");
+
+let arrowConfig = {
+  elementRef: { section: ElementEnums.PANEL_PAGE_WRAPPER, value: 0 },
+  direction: ArrowEnums.DIRECTION.DOWN,
+  size: ArrowEnums.SIZE.LG,
+};
 
 onMounted(() => {
   mounted.value = true;
@@ -32,12 +38,6 @@ onMounted(() => {
     updateLandingPageHeight();
   });
 });
-
-const arrowConfig = {
-  elementRef: { section: ElementEnums.PANEL_PAGE_WRAPPER, value: 0 },
-  direction: ArrowEnums.DIRECTION.DOWN,
-  size: ArrowEnums.SIZE.LG,
-};
 
 function updateLandingPageHeight() {
   dynamicHeight.value = `${window.innerHeight}px`;

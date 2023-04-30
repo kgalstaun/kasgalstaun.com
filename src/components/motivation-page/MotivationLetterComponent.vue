@@ -20,7 +20,7 @@ import TypewriterEnums from "@/enums/TypewriterEnums";
 import TimeOutHelper from "@/helpers/TimeOutHelper.js";
 import Motivation from "@/data/Motivation";
 
-const motivationLetterAnimation = ref([]);
+let motivationLetterAnimation = ref([]);
 
 onMounted(() => {
   Motivation.value.letter.forEach(() => {
