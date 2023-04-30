@@ -46,12 +46,12 @@ async function writeLetter() {
   border-radius: 0.3rem;
 
   @media screen and (min-width: $screen-size-sm) {
-    max-width: 60rem;
+    max-width: 70rem;
   }
 
   @media screen and (min-width: $screen-size-lg) {
     min-width: 50rem;
-    max-width: 60rem;
+    max-width: 70rem;
   }
 
   position: relative;
